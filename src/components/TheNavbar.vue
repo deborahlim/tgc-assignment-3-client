@@ -7,23 +7,44 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="/"
+          <b-nav-item
             ><router-link
-              class="nav-link link-light"
+              class="nav-link"
               active-class="active"
               exact
               :to="{ name: 'Home' }"
               >Home</router-link
             ></b-nav-item
           >
-          <b-nav-item href="about"><router-link
-        class="nav-link link-light"
-        active-class="active"
-        exact
-        :to="{ name: 'About' }"
-        >About</router-link
-      ></b-nav-item>
+          <b-nav-item
+            ><router-link
+              class="nav-link"
+              active-class="active"
+              exact
+              :to="{ name: 'About' }"
+              >About Us</router-link
+            ></b-nav-item
+          >
+            <b-nav-item
+            ><router-link
+              class="nav-link"
+              active-class="active"
+              exact
+              :to="{ name: 'Contact' }"
+              >Contact Us</router-link
+            ></b-nav-item
+          >
+             <b-nav-item
+            ><router-link
+              class="nav-link"
+              active-class="active"
+              exact
+              :to="{ name: 'FAQ' }"
+              >FAQ</router-link
+            ></b-nav-item
+          >
         </b-navbar-nav>
+        
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
@@ -50,8 +71,13 @@
             <template #button-content>
               <em>User</em>
             </template>
-            <b-dropdown-item href="#">Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+            <b-dropdown-item><router-link
+              class="nav-link"
+              active-class="active"
+              exact
+              :to="{ name: 'Login' }"
+              >Log In</router-link
+            ></b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -64,3 +90,17 @@ export default {
   props: {},
 };
 </script>
+<style>
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  text-decoration: underline 6.5px;
+}
+</style>

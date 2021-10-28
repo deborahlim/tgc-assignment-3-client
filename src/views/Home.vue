@@ -1,7 +1,15 @@
 <template>
   <div class="home">
     <Books msg="Welcome to Book Shop" />
-  </div>
+<router-link
+              class="btn btn-primary"
+              active-class="active"
+              exact
+              :to="{ name: 'Register' }"
+              >Create an account</router-link
+            >
+
+      </div>
 </template>
 
 <script>
