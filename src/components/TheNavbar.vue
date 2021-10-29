@@ -17,12 +17,13 @@
             ></b-nav-item
           >
           <b-nav-item
+          v-if="loggedin"
             ><router-link
               class="nav-link"
               active-class="active"
               exact
-              :to="{ name: 'About' }"
-              >About Us</router-link
+              :to="{ name: 'Orders' }"
+              >My Orders</router-link
             ></b-nav-item
           >
           <b-nav-item
