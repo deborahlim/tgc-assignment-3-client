@@ -7,7 +7,10 @@ import router from "./router";
 import store from "./store";
 import VueFormulate from '@braid/vue-formulate'
 import '@braid/vue-formulate/dist/snow.min.css'
-Vue.use(VueFormulate)
+// import FormErrorHandler from "./../utils/formErrorHandler"
+Vue.use(VueFormulate, {
+  // errorHandler: FormErrorHandler
+})
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false;
 

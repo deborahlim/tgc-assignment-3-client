@@ -25,7 +25,7 @@
               >About Us</router-link
             ></b-nav-item
           >
-            <b-nav-item
+          <b-nav-item
             ><router-link
               class="nav-link"
               active-class="active"
@@ -34,7 +34,7 @@
               >Contact Us</router-link
             ></b-nav-item
           >
-             <b-nav-item
+          <b-nav-item
             ><router-link
               class="nav-link"
               active-class="active"
@@ -44,7 +44,6 @@
             ></b-nav-item
           >
         </b-navbar-nav>
-        
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
@@ -71,13 +70,24 @@
             <template #button-content>
               <em>User</em>
             </template>
-            <b-dropdown-item><router-link
-              class="nav-link"
-              active-class="active"
-              exact
-              :to="{ name: 'Login' }"
-              >Log In</router-link
-            ></b-dropdown-item>
+            <b-dropdown-item v-if="!isLoggedIn"
+              ><router-link
+                class="nav-link"
+                active-class="active"
+                exact
+                :to="{ name: 'Login' }"
+                >Log In</router-link
+              ></b-dropdown-item
+            >
+            <b-dropdown-item @click="logOut" v-if="isLoggedIn"
+              ><router-link
+                class="nav-link"
+                active-class="active"
+                exact
+                :to="{ name: 'Home' }"
+                >Log Out</router-link
+              ></b-dropdown-item
+            >
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -88,6 +98,19 @@
 export default {
   name: "TheNavbar",
   props: {},
+  data() {
+    return {};
+  },
+  methods: {
+    logOut() {
+      this.$store.dispatch("logOut");
+    },
+  },
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn;
+    },
+  },
 };
 </script>
 <style>
