@@ -1,5 +1,13 @@
 <template>
   <div class="home">
+         <router-link
+       v-if=!this.$store.getters.isLoggedIn
+      class="btn btn-primary"
+      active-class="active"
+      exact
+      :to="{ name: 'Register' }"
+      >Create an account</router-link
+    >
      <h1>All Books</h1>
         <b-card-group deck class="m-3">
          
@@ -13,14 +21,8 @@ v-bind:key="book.id"
 :authors=book.authors
     ></BaseBookCard>
     </b-card-group>
-      <router-link
-      v-if="this.$store.getters.isLoggedIn"
-      class="btn btn-primary"
-      active-class="active"
-      exact
-      :to="{ name: 'Register' }"
-      >Create an account</router-link
-    >
+   
+ 
 
     
   </div>

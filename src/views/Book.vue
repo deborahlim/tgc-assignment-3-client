@@ -10,7 +10,7 @@
 <p>{{selectedBook.genres.name}}</p>
 <p v-for="tag in selectedBook.tags" v-bind:key="tag.id">{{tag.name}}</p>
   <p v-for="author in selectedBook.authors" v-bind:key="author.id">{{author.name}}</p>
-    <b-button v-b-toggle.sidebar-right variant="outline-primary">Add To Cart</b-button>
+    <b-button @click="submitAddToCart" v-b-toggle.sidebar-right variant="outline-primary">Add To Cart</b-button>
   
 <Cart></Cart>
 
@@ -40,15 +40,18 @@ export default {
   },
   methods: {
     async getBook(book_id) {
+        await this.$store.dispatch("displayBooks");
         let books = await this.$store.getters.getBooks;
         // console.log(books);
         
         this.selectedBook = await books.find((book) => book.id === parseInt(book_id) )
         // console.log(this.selectedBook)
       },
-    getCart() {
-      
-    }
+    async submitAddToCart() {
+        await this.$store.dispatch("showCart")
+        await this.$store.dispatch("addToCart", {book_id:this.book_id})
+
+    },
   }
 }
 </script>

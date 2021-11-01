@@ -19,18 +19,23 @@ const mutations = {
 const actions = {
   async showCart(context) {
     let response = await customAxios.get("/api/cart", {
+        headers: {
+            authorization: "Bearer " + context.getters.getCustomer.accessToken
+              },
         params: {
-            customer_id: this.$store.getters.getCustomer.id
+            customer_id: context.getters.getCustomer.id,
         }
     });
     context.commit("setCart", response.data);
   },
-  async addToCart(context) {
-      console.log(context)
+  async addToCart(context, payload) { 
         await customAxios.get("/api/cart/add", {
+          headers: {
+            authorization: "Bearer " + context.getters.getCustomer.accessToken
+              },
           params: {
-              customer_id: this.$store.getters.getCustomer.id
-            
+            customer_id: context.getters.getCustomer.id,
+            book_id: payload.book_id
           }
       })
   }

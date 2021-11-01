@@ -1,5 +1,6 @@
 <template>
   <div>
+        <b-button @click="getCart" v-b-toggle.sidebar-right variant="outline-primary">My Cart</b-button>
     <b-navbar toggleable="lg" type="dark" variant="info">
       <b-navbar-brand href="#">Book Shop</b-navbar-brand>
 
@@ -62,14 +63,9 @@
 
        <b-nav-item
         v-if=isLoggedIn
-            ><router-link
-           
-              class="nav-link"
-              active-class="active"
-              exact
-              :to="{ name: 'Cart' }"
-              >Cart</router-link
-            ></b-nav-item
+            >
+            
+            </b-nav-item
           >
 
           <b-nav-item-dropdown right>
@@ -117,6 +113,9 @@ export default {
     logOut() {
       this.$store.dispatch("logOut");
     },
+     async getCart() {
+      await this.$store.dispatch("showCart")
+    }
   },
 };
 </script>
