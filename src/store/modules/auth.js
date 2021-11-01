@@ -1,23 +1,23 @@
 const customAxios = require("../../../utils/customAxios");
 
 const state = {
-  user: null,
+  customer: null,
   // tokenExpiration: null,
 };
 
 const getters = {
-  getUser(state) {
-    return state.user;
+  getCustomer(state) {
+    return state.customer;
   },
   isLoggedIn(state) {
-    return !!state.user;
+    return !!state.customer;
     // to change to true boolean
   }
 };
 
 const mutations = {
-  setUser(state, payload) {
-    state.user = payload;
+  setCustomer(state, payload) {
+    state.customer = payload;
     // state.tokenExpiration = payload.tokenExpiration;
   },
 };
@@ -38,7 +38,7 @@ const actions = {
       });
 
     context.commit(
-      "setUser",
+      "setCustomer",
       response.data
       // tokenExpiration: response.expiresIn,
     );
@@ -60,7 +60,7 @@ const actions = {
   },
 
   logOut(context) {
-    context.commit("setUser",
+    context.commit("setCustomer",
     null,
     );
   },

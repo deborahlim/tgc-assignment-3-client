@@ -16,16 +16,7 @@
               >Home</router-link
             ></b-nav-item
           >
-          <b-nav-item
-          v-if="loggedin"
-            ><router-link
-              class="nav-link"
-              active-class="active"
-              exact
-              :to="{ name: 'Orders' }"
-              >My Orders</router-link
-            ></b-nav-item
-          >
+   
           <b-nav-item
             ><router-link
               class="nav-link"
@@ -44,6 +35,16 @@
               >FAQ</router-link
             ></b-nav-item
           >
+                 <b-nav-item
+          v-if=isLoggedIn
+            ><router-link
+              class="nav-link"
+              active-class="active"
+              exact
+              :to="{ name: 'Orders' }"
+              >My Orders</router-link
+            ></b-nav-item
+          >
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -59,20 +60,27 @@
             >
           </b-nav-form>
 
-          <b-nav-item-dropdown text="Lang" right>
-            <b-dropdown-item href="#">EN</b-dropdown-item>
-            <b-dropdown-item href="#">ES</b-dropdown-item>
-            <b-dropdown-item href="#">RU</b-dropdown-item>
-            <b-dropdown-item href="#">FA</b-dropdown-item>
-          </b-nav-item-dropdown>
+       <b-nav-item
+        v-if=isLoggedIn
+            ><router-link
+           
+              class="nav-link"
+              active-class="active"
+              exact
+              :to="{ name: 'Cart' }"
+              >Cart</router-link
+            ></b-nav-item
+          >
 
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
             <template #button-content>
               <em>User</em>
             </template>
-            <b-dropdown-item v-if="!isLoggedIn"
+            <b-dropdown-item 
+             
               ><router-link
+             v-if="!isLoggedIn"
                 class="nav-link"
                 active-class="active"
                 exact
@@ -80,8 +88,9 @@
                 >Log In</router-link
               ></b-dropdown-item
             >
-            <b-dropdown-item @click="logOut" v-if="isLoggedIn"
+            <b-dropdown-item @click="logOut" 
               ><router-link
+              v-if="isLoggedIn"
                 class="nav-link"
                 active-class="active"
                 exact
@@ -98,18 +107,15 @@
 <script>
 export default {
   name: "TheNavbar",
-  props: {},
   data() {
     return {};
+  },
+  props: {
+    isLoggedIn : Boolean
   },
   methods: {
     logOut() {
       this.$store.dispatch("logOut");
-    },
-  },
-  computed: {
-    isLoggedIn() {
-      return this.$store.getters.isLoggedIn;
     },
   },
 };

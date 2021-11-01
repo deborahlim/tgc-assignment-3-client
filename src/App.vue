@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <TheNavbar></TheNavbar>
+      <TheNavbar :isLoggedIn=!!this.$store.getters.isLoggedIn ></TheNavbar>
     </div>
     <router-view />
   </div>
@@ -17,11 +17,6 @@ export default {
   },
   data() {
     return {};
-  },
-  computed: {
-    loggedIn() {
-      return this.$store.getters.isLoggedIn;
-    },
   },
 };
 </script>

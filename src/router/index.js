@@ -6,7 +6,7 @@ import Home from "../views/Home.vue";
 // import FAQ from '../views/FAQ.vue'
 // import Login from '../views/Login.vue'
 // import Register from '../views/Register.vue'
-
+// import Book from "../views/Book.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -14,15 +14,6 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
-  },
-  {
-    path: "/cart",
-    name: "Cart",
-    // route level code-splitting
-    // this generates a separate chunk (cart.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "cart" */ "../views/Cart.vue"),
   },
   {
     path: "/contact",
@@ -65,7 +56,13 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "orders" */ "../views/Orders.vue"),
   },
-
+{
+  path: "/book/:book_id",
+  component: () =>
+      import(/* webpackChunkName: "book" */ "../views/Book.vue"),
+  name: "Book",
+  props: true
+}
 ];
 
 const router = new VueRouter({

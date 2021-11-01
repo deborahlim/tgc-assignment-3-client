@@ -28,7 +28,7 @@ export default {
       try {
         await this.$store.dispatch("login", data);
         this.$router.replace({
-          name: "Books",
+          name: "Home",
         });
       } catch (err) {
         console.log(err.message);
