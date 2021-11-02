@@ -1,6 +1,6 @@
 <template>
   <div>
-        <b-button @click="getCart" v-b-toggle.sidebar-right variant="outline-primary">My Cart</b-button>
+
     <b-navbar toggleable="lg" type="dark" variant="info">
       <b-navbar-brand href="#">Book Shop</b-navbar-brand>
 
@@ -61,12 +61,12 @@
             >
           </b-nav-form>
 
-       <b-nav-item
-        v-if=isLoggedIn
-            >
-            
-            </b-nav-item
-          >
+           <b-button @click="getCart" v-if=isLoggedIn><router-link
+              exact
+              :to="{ name: 'Checkout' }"
+              class="cart-icon"
+              >My Cart</router-link
+            ></b-button>
 
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
@@ -131,5 +131,9 @@ export default {
 
 #nav a.router-link-exact-active {
   text-decoration: underline 6.5px;
+}
+
+.cart-icon {
+  text-decoration: none !important;;
 }
 </style>

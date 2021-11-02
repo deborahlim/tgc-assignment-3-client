@@ -40,5 +40,7 @@ export default {
     async created() {
     await this.$store.dispatch("displayBooks");
   },
+  methods: {
+  }
 };
 </script>

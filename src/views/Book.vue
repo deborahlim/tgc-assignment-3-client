@@ -10,9 +10,9 @@
 <p>{{selectedBook.genres.name}}</p>
 <p v-for="tag in selectedBook.tags" v-bind:key="tag.id">{{tag.name}}</p>
   <p v-for="author in selectedBook.authors" v-bind:key="author.id">{{author.name}}</p>
-    <b-button @click="submitAddToCart" v-b-toggle.sidebar-right variant="outline-primary">Add To Cart</b-button>
+    <b-button @click=submitAddToCart  variant="outline-primary">Add To Cart</b-button>
   
-<Cart></Cart>
+<Cart @cart-hidden=changeCartVisibility :visibility=isCartVisible ></Cart>
 
 
   </div>
@@ -31,14 +31,28 @@ export default {
   },
   data() {
       return {
-          selectedBook: null
+          selectedBook: null,
+          isCartVisible: true
       }
   },
   props: ["book_id"], 
   created() {
       this.getBook(this.book_id);
   },
+  
+  computed: {
+   
+  },
   methods: {
+    changeCartVisibility() {
+      this.isCartVisible = false
+    },
+   checkCartVisibility() {
+     if(!this.isCartVisible) {
+      this.isCartVisible = true
+     }
+        
+    },  
     async getBook(book_id) {
         await this.$store.dispatch("displayBooks");
         let books = await this.$store.getters.getBooks;
@@ -48,8 +62,10 @@ export default {
         // console.log(this.selectedBook)
       },
     async submitAddToCart() {
+      this.checkCartVisibility();
+      await this.$store.dispatch("addToCart", {book_id:this.book_id})
         await this.$store.dispatch("showCart")
-        await this.$store.dispatch("addToCart", {book_id:this.book_id})
+        
 
     },
   }
