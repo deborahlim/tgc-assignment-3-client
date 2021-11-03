@@ -1,38 +1,44 @@
-
 <template>
-  <div v-if="publishableKey!==null">
-      <h1>Checkout</h1>
-    <stripe-checkout
+  <div>
+    <h1>Checkout</h1>
+    <StripeCheckout
+     v-if="this.$store.getters.getCheckoutInfo"
       ref="checkoutRef"
-      :pk="publishableKey"
-      :session-id="sessionId"
+      :pk="getPublishableKey"
+      :session-id="getSessionId"
     />
     <button @click="submit">Checkout!</button>
   </div>
 </template>
 
 <script>
-import { StripeCheckout } from '@vue-stripe/vue-stripe';
+import { StripeCheckout } from "@vue-stripe/vue-stripe";
 export default {
   components: {
     StripeCheckout,
   },
-  created() {
-this.getCheckoutInfo();
+ created() {
+    this.getCheckoutInfo();
   },
-  data () {
-    this.publishableKey = this.$store.getters.getCheckoutInfo.publishableKey;
+  data() {
     return {
       loading: false,
-      sessionId: this.$store.getters.getCheckoutInfo.sessionId, // session id from backend
     };
   },
-  methods: {
-   async getCheckoutInfo() {
-    let checkOutInfo = await this.$store.dispatch("checkoutCart")
-    console.log(checkOutInfo)
+  computed: {
+    getPublishableKey() {
+      return this.$store.getters.getCheckoutInfo.publishableKey;
     },
-    submit () {
+    getSessionId() {
+      return this.$store.getters.getCheckoutInfo.sessionId; // session id from backend
+    },
+  },
+  methods: {
+    async getCheckoutInfo() {
+      let checkOutInfo = await this.$store.dispatch("checkoutCart");
+      console.log(checkOutInfo);
+    },
+    submit() {
       // You will be redirected to Stripe's secure checkout page
       this.$refs.checkoutRef.redirectToCheckout();
     },
