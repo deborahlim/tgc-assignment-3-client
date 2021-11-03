@@ -9,7 +9,7 @@
   >
     <div class="px-3 py-2">
       <b-card
-        v-for="item in this.$store.getters.getCart"
+        v-for="item in displayCart"
         v-bind:key="item.id"
         no-body
         class="overflow-hidden"
@@ -27,9 +27,36 @@
             <b-card-body :title="item.books.title">
               <b-card-text>
                 <p>Cost: ${{ item.books.cost }}</p>
-<b-form-select v-model="chosenQty" :options="qtyOptions"></b-form-select>
-  <b-button @click=updateQty  size="sm">Update Qty</b-button>
-                
+                <FormulateForm
+                  id="item.id"
+                  @submit="updateQuantity"
+                >
+                    <FormulateInput
+                    style="display:none"
+                    type="number"
+                    name="bookId"
+                    :value="parseInt(item.book_id)"
+                  />
+                  <FormulateInput
+              
+                    type="number"
+                    name="quantity"
+                    label="Quantity"
+                    :value="parseInt(item.quantity)"
+                    :validation="[
+                      ['required'],
+                      ['number'],
+                      ['between', 0, item.books.stock],
+                    ]"
+                    error-behavior="live"
+                  />
+                  <FormulateInput
+                    element-class=""
+                    type="submit"
+                    label="Update"
+                  />
+                </FormulateForm>
+
                 <b-icon-trash
                   @click="removeFromCart(item.book_id)"
                   icon="trash"
@@ -54,17 +81,22 @@ export default {
   components: { BIconTrash },
   data() {
     return {
-      update: false,
-      qtyOptions: [1,2,3,4,5,6,7,8,9,"10+"],
-      chosenQty: null
-    }
+    };
+  },
+  computed: {
+    displayCart() {
+      return this.$store.getters.getCart;
+    },
+    getQuantity() {
+      return this.chosenQty;
+    },
   },
   props: {
     visibility: Boolean,
   },
   methods: {
     updateQty() {
-      this.update = true
+      this.update = true;
     },
     hideCart() {
       this.$emit("cart-hidden");
@@ -75,6 +107,13 @@ export default {
     async removeFromCart(book_id) {
       await this.$store.dispatch("deleteFromCart", { book_id: book_id });
       await this.$store.dispatch("showCart");
+    },
+    async updateQuantity(data) {
+      console.log(data);
+      await this.$store.dispatch("updateQty", {
+        book_id: data.bookId,
+        new_quantity: data.quantity,
+      });
     },
   },
 };

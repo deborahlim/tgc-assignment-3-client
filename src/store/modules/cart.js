@@ -53,6 +53,22 @@ const actions = {
     console.log("AFTEER REQUEST");
     console.log("RESPONSE", response.data);
   },
+  async updateQty(context, payload) {
+    console.log(payload);
+    await customAxios.post(
+      "/api/cart/quantity/update",
+      {
+        customer_id: context.getters.getCustomer.id,
+        book_id: payload.book_id,
+        new_quantity: parseInt(payload.new_quantity),
+      },
+      {
+        headers: {
+          authorization: "Bearer " + context.getters.getCustomer.accessToken,
+        },
+      }
+    );
+  },
 };
 
 export default {
