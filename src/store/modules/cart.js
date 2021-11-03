@@ -2,17 +2,24 @@ const customAxios = require("../../../utils/customAxios");
 
 const state = {
   cart: null,
+  checkout: null,
 };
 
 const getters = {
   getCart() {
     return state.cart;
   },
+  getCheckoutInfo() {
+    return state.checkout;
+  },
 };
 
 const mutations = {
   setCart(state, payload) {
     state.cart = payload;
+  },
+  setCheckout(state, payload) {
+    state.checkout = payload;
   },
 };
 
@@ -41,7 +48,7 @@ const actions = {
   },
 
   async deleteFromCart(context, payload) {
-    let response = await customAxios.get("/api/cart/remove", {
+    await customAxios.get("/api/cart/remove", {
       headers: {
         authorization: "Bearer " + context.getters.getCustomer.accessToken,
       },
@@ -50,8 +57,6 @@ const actions = {
         book_id: payload.book_id,
       },
     });
-    console.log("AFTEER REQUEST");
-    console.log("RESPONSE", response.data);
   },
   async updateQty(context, payload) {
     console.log(payload);
@@ -68,6 +73,19 @@ const actions = {
         },
       }
     );
+  },
+  async checkoutCart(context) {
+    console.log("Checkout");
+    let result = await customAxios.get("/api/checkout", {
+      headers: {
+        authorization: "Bearer " + context.getters.getCustomer.accessToken,
+      },
+      params: {
+        customer_id: context.getters.getCustomer.id,
+      },
+    });
+    console.log("Checkout Info result")
+    context.commit("setCheckout", result.data);
   },
 };
 
