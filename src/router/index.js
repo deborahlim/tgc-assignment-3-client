@@ -68,7 +68,19 @@ const routes = [
   component: () =>
   import(/* webpackChunkName: "checkout" */ "../views/Checkout.vue"),
   name: "Checkout",
-}
+},
+{
+  path: "/checkout/success",
+  component: () =>
+  import(/* webpackChunkName: "checkoutSuccess" */ "../views/CheckoutSuccess.vue"),
+  name: "CheckoutSuccess",
+},
+{
+  path: "/checkout/error",
+  component: () =>
+  import(/* webpackChunkName: "checkoutError" */ "../views/CheckoutError.vue"),
+  name: "CheckoutError",
+},
 ];
 
 const router = new VueRouter({
