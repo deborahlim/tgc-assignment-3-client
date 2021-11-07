@@ -1,6 +1,9 @@
 <template>
   <div>
     <h1>Checkout</h1>
+    <div class="cart">
+    <Cart></Cart>
+    </div>
     <StripeCheckout
      v-if="this.$store.getters.getCheckoutInfo"
       ref="checkoutRef"
@@ -13,9 +16,11 @@
 
 <script>
 import { StripeCheckout } from "@vue-stripe/vue-stripe";
+import Cart from "../components/Cart.vue"
 export default {
   components: {
     StripeCheckout,
+    Cart
   },
  created() {
     this.getCheckoutInfo();
@@ -45,3 +50,10 @@ export default {
   },
 };
 </script>
+
+<style>
+.cart {
+  width:70%;
+  margin: 0 auto
+}
+</style>
