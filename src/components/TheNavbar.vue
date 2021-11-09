@@ -121,7 +121,7 @@ export default {
 </script>
 <style>
 #nav {
-  padding: 30px;
+  padding-bottom: 30px;
 }
 
 #nav a {
