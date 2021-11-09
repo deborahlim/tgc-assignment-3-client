@@ -1,9 +1,8 @@
 <template>
   <div class="home">
-  <div>
+  <div class="height-50">
     <b-carousel
       id="carousel-1"
-      v-model="slide"
       :interval="4000"
       controls
       indicators
@@ -11,39 +10,23 @@
       img-width="1024"
       img-height="480"
       style="text-shadow: 1px 1px 2px #333;"
-      @sliding-start="onSlideStart"
-      @sliding-end="onSlideEnd"
     >
-      <!-- Text slides with image -->
+
       <b-carousel-slide
-        img-src="https://static01.nyt.com/images/2020/12/04/books/04CRITICSPICKS-COMBO/00BOOKCOMBO-superJumbo.jpg?quality=75&auto=webp"
+        :img-src="require('../assets/carousel-1.jpg')"
       >
       <h1>First slide</h1>
       <p>Nulla vitae elit libero, a pharetra augue mollis interdum</p>
       </b-carousel-slide>
 
-      <!-- Slides with custom text -->
-      <b-carousel-slide img-src="https://sm.mashable.com/t/mashable_sea/article/j/just-10-ne/just-10-new-books-youll-probably-love_wg6d.1248.jpg
-">
+      <b-carousel-slide :img-src="require('../assets/carousel-2.webp')"
+>
         <h1>Hello world!</h1>
       </b-carousel-slide>
 
-      <!-- Slides with image only -->
-      <b-carousel-slide img-src="https://scontent.fsin10-1.fna.fbcdn.net/v/t39.30808-6/234780125_6326336824107031_1766314122609467646_n.png?_nc_cat=111&ccb=1-5&_nc_sid=6e5ad9&_nc_ohc=eEmeGLWIVcYAX_IbGkl&_nc_ht=scontent.fsin10-1.fna&oh=618cadf927362605253668a74aa0aa0d&oe=618F9B4B"></b-carousel-slide>
-
-      <!-- Slides with img slot -->
-      <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
-      <!-- <b-carousel-slide>
-        <template #img>
-          <img
-            class="d-block img-fluid w-100"
-            width="1024"
-            height="480"
-            src="https://static01.nyt.com/images/2021/03/26/books/00APRIL-BOOKS-COMBO/00APRIL-BOOKS-COMBO-superJumbo.jpg?quality=75&auto=webp"
-            alt="image slot"
-          >
-        </template>
-      </b-carousel-slide> -->
+      <b-carousel-slide :img-src="require('../assets/carousel-3.png')">
+      <h1>Third slide</h1>
+      </b-carousel-slide>
     </b-carousel>
          <router-link
        v-if=!this.$store.getters.isLoggedIn
@@ -85,8 +68,6 @@ export default {
     async created() {
     await this.$store.dispatch("displayBooks");
   },
-  methods: {
-  }
 };
 </script>
 
