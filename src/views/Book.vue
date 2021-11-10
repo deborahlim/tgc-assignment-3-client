@@ -23,7 +23,7 @@
         right
         shadow
       >
-        <Cart></Cart>
+        <Cart :key="addOne"></Cart>
       </b-sidebar>
     </div>
   </div>
@@ -41,6 +41,7 @@ export default {
     return {
       selectedBook: null,
       isCartVisible: false,
+      addOne: 0
     };
   },
   props: { book_id: String },
@@ -70,6 +71,7 @@ export default {
       this.checkCartVisibility();
       await this.$store.dispatch("addToCart", { book_id: this.book_id });
       await this.$store.dispatch("showCart");
+      this.addOne += 1
     },
   },
 };

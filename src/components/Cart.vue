@@ -27,6 +27,7 @@
                   :value="parseInt(item.book_id)"
                 />
                 <FormulateInput
+                 :id="item.quantity"
                   type="number"
                   name="quantity"
                   label="Quantity"
@@ -40,7 +41,7 @@
                 />
                 <FormulateInput element-class="" type="submit" label="Update" />
               </FormulateForm>
-
+        
               <b-icon-trash
                 @click="removeFromCart(item.book_id)"
                 icon="trash"
@@ -63,26 +64,27 @@ export default {
   },
   components: { BIconTrash },
   data() {
-    return {};
+    return {
+   cartItems: [{quantity: 5}, {quantity: 6}]
+    }
   },
   computed: {
-    displayCart() {
-      return this.$store.getters.getCart;
-    },
     getQuantity() {
       return this.chosenQty;
     },
+        displayCart() {
+      return this.$store.getters.getCart;
+    },
   },
-  // props: {
-  //   visibility: Boolean,
-  // },
   methods: {
+
     updateQty() {
       this.update = true;
     },
 
     async getCart() {
       await this.$store.dispatch("showCart");
+ 
     },
     async removeFromCart(book_id) {
       await this.$store.dispatch("deleteFromCart", { book_id: book_id });
@@ -94,6 +96,7 @@ export default {
         book_id: data.bookId,
         new_quantity: data.quantity,
       });
+      this.getCart()
     },
   },
 };
