@@ -2,33 +2,29 @@
   <div>
     <h1>Checkout</h1>
     <div class="cart">
-    <Cart></Cart>
+      <Cart></Cart>
     </div>
     <StripeCheckout
-     v-if="this.$store.getters.getCheckoutInfo"
+      v-if="!!retrieveCheckoutInfo"
       ref="checkoutRef"
       :pk="getPublishableKey"
       :session-id="getSessionId"
     />
-    <button @click="submit">Checkout!</button>
+    <button v-if="!!retrieveCart" @click="submit">Checkout!</button>
   </div>
 </template>
 
 <script>
 import { StripeCheckout } from "@vue-stripe/vue-stripe";
-import Cart from "../components/Cart.vue"
+import Cart from "../components/Cart.vue";
 export default {
   components: {
     StripeCheckout,
-    Cart
+    Cart,
   },
- created() {
+  created() {
+    this.getCart();
     this.getCheckoutInfo();
-  },
-  data() {
-    return {
-      loading: false,
-    };
   },
   computed: {
     getPublishableKey() {
@@ -37,8 +33,17 @@ export default {
     getSessionId() {
       return this.$store.getters.getCheckoutInfo.sessionId; // session id from backend
     },
+    retrieveCheckoutInfo() {
+      return this.$store.getters.getCheckoutInfo;
+    },
+    retrieveCart() {
+      return this.$store.getters.getCart !== [];
+    },
   },
   methods: {
+    async getCart() {
+      await this.$store.dispatch("showCart");
+    },
     async getCheckoutInfo() {
       let checkOutInfo = await this.$store.dispatch("checkoutCart");
       console.log(checkOutInfo);
@@ -53,7 +58,7 @@ export default {
 
 <style>
 .cart {
-  width:70%;
-  margin: 0 auto
+  width: 70%;
+  margin: 0 auto;
 }
 </style>

@@ -32,6 +32,8 @@
                   name="quantity"
                   label="Quantity"
                   :value="parseInt(item.quantity)"
+                  min= "1"
+                  :max="`${item.books.stock}`"
                   :validation="[
                     ['required'],
                     ['number'],

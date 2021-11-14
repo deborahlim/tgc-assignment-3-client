@@ -61,7 +61,7 @@
             >
           </b-nav-form>
 
-           <b-button @click="getCart" v-if=isLoggedIn><router-link
+           <b-button v-if=isLoggedIn><router-link
               exact
               :to="{ name: 'Checkout' }"
               class="cart-icon"
@@ -103,18 +103,12 @@
 <script>
 export default {
   name: "TheNavbar",
-  data() {
-    return {};
-  },
   props: {
     isLoggedIn : Boolean
   },
   methods: {
     logOut() {
       this.$store.dispatch("logOut");
-    },
-     async getCart() {
-      await this.$store.dispatch("showCart")
     }
   },
 };

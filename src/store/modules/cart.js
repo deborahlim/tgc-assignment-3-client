@@ -61,13 +61,11 @@ const actions = {
   async updateQty(context, payload) {
     console.log(payload);
     await customAxios.post(
-      "/api/cart/quantity/update",
-      {
+      "/api/cart/quantity/update", {
         customer_id: context.getters.getCustomer.id,
         book_id: payload.book_id,
         new_quantity: parseInt(payload.new_quantity),
-      },
-      {
+      }, {
         headers: {
           authorization: "Bearer " + context.getters.getCustomer.accessToken,
         },
@@ -75,7 +73,7 @@ const actions = {
     );
   },
   async checkoutCart(context) {
-    console.log("Checkout");
+    // console.log("Checkout");
     let result = await customAxios.get("/api/checkout", {
       headers: {
         authorization: "Bearer " + context.getters.getCustomer.accessToken,
@@ -84,7 +82,7 @@ const actions = {
         customer_id: context.getters.getCustomer.id,
       },
     });
-    console.log("Checkout Info result")
+    // console.log("Checkout Info result")
     context.commit("setCheckout", result.data);
   },
 };

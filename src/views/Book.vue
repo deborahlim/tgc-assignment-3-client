@@ -24,6 +24,12 @@
         shadow
       >
         <Cart :key="addOne"></Cart>
+         <b-button><router-link
+              exact
+              :to="{ name: 'Checkout' }"
+              class="btn"
+              >My Cart</router-link
+            ></b-button>
       </b-sidebar>
     </div>
   </div>
@@ -46,7 +52,7 @@ export default {
   },
   computed: {
     inStock() {
-      return this.selectedBook.stock !== 0
+      return this.selectedBook.stock !== 0 
     }
   },
   props: { book_id: String },
@@ -81,3 +87,7 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+</style>
