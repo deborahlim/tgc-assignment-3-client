@@ -12,7 +12,7 @@
       <p v-for="author in selectedBook.authors" v-bind:key="author.id">
         {{ author.name }}
       </p>
-      <b-button @click="submitAddToCart" variant="outline-primary"
+      <b-button v-if="inStock" @click="submitAddToCart" variant="outline-primary"
         >Add To Cart</b-button
       >
       <b-sidebar
@@ -43,6 +43,11 @@ export default {
       isCartVisible: false,
       addOne: 0
     };
+  },
+  computed: {
+    inStock() {
+      return this.selectedBook.stock !== 0
+    }
   },
   props: { book_id: String },
   created() {

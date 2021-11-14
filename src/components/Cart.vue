@@ -35,8 +35,9 @@
                   :validation="[
                     ['required'],
                     ['number'],
-                    ['between', 0, item.books.stock],
+                    ['between', 0, item.books.stock + 1],
                   ]"
+                  :help="`Remaining Stock: ${item.books.stock}`"
                   error-behavior="live"
                 />
                 <FormulateInput element-class="" type="submit" label="Update" />

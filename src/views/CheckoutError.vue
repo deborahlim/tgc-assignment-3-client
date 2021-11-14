@@ -1,3 +1,11 @@
-<template>
-    <h1>An errror orccured during checkout. Please try again.</h1>
+<template><div class="">
+    <h1>Your checkout session has been cancelled.</h1>
+    <router-link
+              class="btn btn-info"
+              active-class="active"
+              exact
+              :to="{ name: 'Orders' }"
+              >Go to Orders</router-link
+            >
+            </div>
 </template>
