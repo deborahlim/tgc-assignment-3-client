@@ -4,13 +4,21 @@
     <div class="cart">
       <Cart></Cart>
     </div>
-    <StripeCheckout
-      v-if="!!retrieveCheckoutInfo"
+    <div class="" v-if="!!retrieveCheckoutInfo && retrieveCart">
+       <StripeCheckout
       ref="checkoutRef"
       :pk="getPublishableKey"
       :session-id="getSessionId"
     />
-    <button v-if="!!retrieveCart" @click="submit">Checkout!</button>
+    <button @click="submit">
+      Checkout!
+    </button>
+    </div>
+    <div class="" v-else>
+    <p >Add Items to your Cart!</p>
+    <b-button>Go to Books</b-button>
+    </div>
+   
   </div>
 </template>
 
@@ -37,7 +45,10 @@ export default {
       return this.$store.getters.getCheckoutInfo;
     },
     retrieveCart() {
-      return this.$store.getters.getCart !== [];
+      if (this.$store.getters.getCart.length === 0) {
+        return false;
+      }
+      return true;
     },
   },
   methods: {
@@ -45,8 +56,7 @@ export default {
       await this.$store.dispatch("showCart");
     },
     async getCheckoutInfo() {
-      let checkOutInfo = await this.$store.dispatch("checkoutCart");
-      console.log(checkOutInfo);
+      await this.$store.dispatch("checkoutCart");
     },
     submit() {
       // You will be redirected to Stripe's secure checkout page
