@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import NotFound from "../views/NotFound.vue"
 // import Cart from '../views/Cart.vue'
 // import Contact from '../views/Contact.vue'
 // import FAQ from '../views/FAQ.vue'
@@ -9,8 +10,7 @@ import Home from "../views/Home.vue";
 // import Book from "../views/Book.vue";
 Vue.use(VueRouter);
 
-const routes = [
-  {
+const routes = [{
     path: "/",
     name: "Home",
     component: Home,
@@ -19,7 +19,7 @@ const routes = [
     path: "/contact",
     name: "Contact",
     component: () =>
-      import(/* webpackChunkName: "contact" */ "../views/Contact.vue"),
+      import( /* webpackChunkName: "contact" */ "../views/Contact.vue"),
   },
   {
     path: "/FAQ",
@@ -27,7 +27,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (FAQ.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "FAQ" */ "../views/FAQ.vue"),
+    component: () => import( /* webpackChunkName: "FAQ" */ "../views/FAQ.vue"),
   },
   {
     path: "/login",
@@ -36,7 +36,10 @@ const routes = [
     // this generates a separate chunk (login.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "login" */ "../views/Login.vue"),
+      import( /* webpackChunkName: "login" */ "../views/Login.vue"),
+    meta: {
+      requiresUnAuth: true
+    }
   },
   {
     path: "/register",
@@ -45,7 +48,10 @@ const routes = [
     // this generates a separate chunk (register.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "register" */ "../views/Register.vue"),
+      import( /* webpackChunkName: "register" */ "../views/Register.vue"),
+    meta: {
+      requiresUnAuth: true
+    }
   },
   {
     path: "/orders",
@@ -54,33 +60,53 @@ const routes = [
     // this generates a separate chunk (orders.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "orders" */ "../views/Orders.vue"),
+      import( /* webpackChunkName: "orders" */ "../views/Orders.vue"),
+    meta: {
+      requiresAuth: true
+    }
   },
-{
-  path: "/book/:book_id",
-  component: () =>
-      import(/* webpackChunkName: "book" */ "../views/Book.vue"),
-  name: "Book",
-  props: true
-},
-{
-  path: "/checkout",
-  component: () =>
-  import(/* webpackChunkName: "checkout" */ "../views/Checkout.vue"),
-  name: "Checkout",
-},
-{
-  path: "/checkout/success",
-  component: () =>
-  import(/* webpackChunkName: "checkoutSuccess" */ "../views/CheckoutSuccess.vue"),
-  name: "CheckoutSuccess",
-},
-{
-  path: "/checkout/error",
-  component: () =>
-  import(/* webpackChunkName: "checkoutError" */ "../views/CheckoutError.vue"),
-  name: "CheckoutError",
-},
+
+  {
+    path: "/book/:book_id",
+    component: () =>
+      import( /* webpackChunkName: "book" */ "../views/Book.vue"),
+    name: "Book",
+    props: true,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/checkout",
+    component: () =>
+      import( /* webpackChunkName: "checkout" */ "../views/Checkout.vue"),
+    name: "Checkout",
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/checkout/success",
+    component: () =>
+      import( /* webpackChunkName: "checkoutSuccess" */ "../views/CheckoutSuccess.vue"),
+    name: "CheckoutSuccess",
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/checkout/error",
+    component: () =>
+      import( /* webpackChunkName: "checkoutError" */ "../views/CheckoutError.vue"),
+    name: "CheckoutError",
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/:notFound(.*)",
+    component: NotFound
+  }
 ];
 
 const router = new VueRouter({
@@ -88,5 +114,7 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+
+
 
 export default router;

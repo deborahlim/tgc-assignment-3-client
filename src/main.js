@@ -13,7 +13,15 @@ Vue.use(VueFormulate, {
 })
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false;
-
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth && !store.getters.isLoggedIn) {
+    next('/login')
+  } else if (to.meta.requiresUnAuth && store.getters.isLoggedIn) {
+    next("/home")
+  } else {
+    next()
+  }
+})
 new Vue({
   router,
   store,
