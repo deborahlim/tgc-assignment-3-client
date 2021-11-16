@@ -15,9 +15,9 @@ export default {
   components: {
     TheNavbar
   },
-  data() {
-    return {};
-  },
+created() {
+ 
+},
 };
 </script>
 

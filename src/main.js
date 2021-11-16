@@ -13,7 +13,9 @@ Vue.use(VueFormulate, {
 })
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false;
+
 router.beforeEach((to, from, next) => {
+  store.dispatch("autoLogin")
   if (to.meta.requiresAuth && !store.getters.isLoggedIn) {
     next('/login')
   } else if (to.meta.requiresUnAuth && store.getters.isLoggedIn) {

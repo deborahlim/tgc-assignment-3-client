@@ -33,9 +33,10 @@ export default {
       } catch (err) {
         console.log(err.message);
         const errors = {
-          formErrors: err.response === undefined
-            ? err.message
-            : err.response.data.error.message,
+          formErrors:
+            err.response === undefined
+              ? err.message
+              : err.response.data.error.message,
         };
         this.$formulate.handle(errors, "login");
       }
