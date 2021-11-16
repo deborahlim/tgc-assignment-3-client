@@ -1,5 +1,6 @@
 const customAxios = require("../../../utils/customAxios");
 let timer;
+const expireBy = 600000;
 const state = {
   customer: null,
   // tokenExpiration: null,
@@ -42,18 +43,15 @@ const actions = {
         error = err;
         throw error;
       });
-
-    // const expirationDate = new Date().getTime() + (12 * 60000)
-    const expirationDate = new Date().getTime() + (5000)
+    const expirationDate = new Date().getTime() + expireBy
     sessionStorage.setItem("customerInfo", JSON.stringify(response.data));
     sessionStorage.setItem("accessTokenExpiration", expirationDate);
    
     
     timer = setTimeout(function() {
       const customerInfo = JSON.parse(sessionStorage.getItem("customerInfo")) ;
-      console.log(customerInfo.refreshToken)
       context.dispatch("refresh", {refreshToken: customerInfo.refreshToken});
-    }, (15*60000))
+    }, expireBy)
 
     context.commit(
       "setCustomer",
@@ -66,17 +64,14 @@ const actions = {
   autoLogin(context) {
   const customerInfo = JSON.parse(sessionStorage.getItem("customerInfo")) ;
   const accessTokenExpiration = sessionStorage.getItem("accessTokenExpiration");
-
+    // console.log(accessTokenExpiration);
   const expiresIn = +accessTokenExpiration - new Date().getTime();
-console.log("AUTO LOGOUT EXPIRES", expiresIn)
   if(expiresIn < 0) {
     return;
   }
-  console.log(customerInfo.refreshToken)
   timer = setTimeout(function() {
     context.dispatch("refresh", {refreshToken: customerInfo.refreshToken})}, expiresIn
   )
-  // console.log(customerInfo)
     if(customerInfo.accessToken && customerInfo.refreshToken) {
       context.commit("setCustomer", customerInfo)
     }
@@ -88,8 +83,12 @@ console.log("AUTO LOGOUT EXPIRES", expiresIn)
       error = err;
       throw error
     });
+    const expirationDate = new Date().getTime() + expireBy
+    sessionStorage.setItem("accessTokenExpiration", expirationDate);
+    let customerInfo = JSON.parse(sessionStorage.getItem("customerInfo"));
+    customerInfo.accessToken = response.data.accessToken; 
+    sessionStorage.setItem("customerInfo", JSON.stringify(customerInfo));
     context.commit("setAccessToken", response.data)
-
   },
   async register(context, payload) {
     let error;
