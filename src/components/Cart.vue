@@ -15,17 +15,11 @@
             class="rounded-0"
           ></b-card-img>
         </b-col>
-        <b-col md="6">
+        <b-col md="6" style="background: grey">
           <b-card-body :title="item.books.title">
             <b-card-text>
               <p>Cost: ${{ item.books.cost }}</p>
               <FormulateForm id="item.id" @submit="updateQuantity">
-                <FormulateInput
-                  style="display: none"
-                  type="number"
-                  name="bookId"
-                  :value="parseInt(item.book_id)"
-                />
                 <FormulateInput
                  :id="item.quantity"
                   type="number"
@@ -40,16 +34,21 @@
                     ['between', 0, item.books.stock + 1],
                   ]"
                   :help="`Remaining Stock: ${item.books.stock}`"
+
                   error-behavior="live"
                 />
-                <FormulateInput element-class="" type="submit" label="Update" />
-              </FormulateForm>
-        
-              <b-icon-trash
+                <div class="d-inline-flex">
+                  <FormulateInput element-class="" type="submit" label="Update" />
+                   <b-icon-trash
                 @click="removeFromCart(item.book_id)"
                 icon="trash"
-                class="h4 mt-2 trash"
+                class="h4 mx-4 mt-2 trash"
               ></b-icon-trash>
+                </div>
+                
+              </FormulateForm>
+        
+           
             </b-card-text>
           </b-card-body>
         </b-col>
@@ -105,12 +104,17 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .trash:hover {
   color: brown;
 }
 
 .trash:active {
   transform: translateY(0.5px);
+}
+
+.formulate-input .formulate-input-element {
+  display: inline-block;
+  max-width: 100px !important;
 }
 </style>

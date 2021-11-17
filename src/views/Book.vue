@@ -1,8 +1,12 @@
 <template>
-  <div class="about" v-if="selectedBook">
-    <h1>{{ selectedBook.title }}</h1>
+  <div class="book my-4" v-if="selectedBook">
+    <h1 class="p-4">{{ selectedBook.title }}</h1>
     <div>
+      <b-row gutters-2>
+        <b-col md="6">
       <b-img :src="selectedBook.photoURL" fluid alt="Responsive image"></b-img>
+      </b-col>
+      <b-col md="6">
       <p>{{ selectedBook.cost }}</p>
       <p>{{ selectedBook.description }}</p>
       <p>{{ selectedBook.formats.name }}</p>
@@ -12,7 +16,10 @@
       <p v-for="author in selectedBook.authors" v-bind:key="author.id">
         {{ author.name }}
       </p>
-      <b-button v-if="inStock" @click="submitAddToCart" variant="outline-primary"
+      </b-col>
+      
+      </b-row>
+            <b-button v-if="inStock" @click="submitAddToCart" class="my-5" variant="outline-primary"
         >Add To Cart</b-button
       >
       <b-sidebar
@@ -89,5 +96,8 @@ export default {
 </script>
 
 <style scoped>
-
+.book {
+  height: fit-content;
+  background: salmon;
+}
 </style>

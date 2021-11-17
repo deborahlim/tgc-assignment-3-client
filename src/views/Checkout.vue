@@ -1,24 +1,21 @@
 <template>
-  <div>
-    <h1>Checkout</h1>
+  <div class="p-5">
+    <h1 class="display-5">My Cart</h1>
     <div class="cart">
       <Cart></Cart>
     </div>
-    <div class="" v-if="!!retrieveCheckoutInfo && retrieveCart">
-       <StripeCheckout
-      ref="checkoutRef"
-      :pk="getPublishableKey"
-      :session-id="getSessionId"
-    />
-    <button @click="submit">
-      Checkout!
-    </button>
+    <div v-if="!!retrieveCheckoutInfo && retrieveCart">
+      <StripeCheckout
+        ref="checkoutRef"
+        :pk="getPublishableKey"
+        :session-id="getSessionId"
+      />
+      <b-button class="m-3" @click="submit"> Checkout! </b-button>
     </div>
-    <div class="" v-else>
-    <p >Add Items to your Cart!</p>
-    <b-button>Go to Books</b-button>
+    <div v-else>
+      <p>Add Items to your Cart!</p>
+      <b-button>Go to Books</b-button>
     </div>
-   
   </div>
 </template>
 
@@ -70,5 +67,9 @@ export default {
 .cart {
   width: 70%;
   margin: 0 auto;
+}
+
+.checkout {
+  background: violet;
 }
 </style>
