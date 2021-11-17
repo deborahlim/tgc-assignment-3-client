@@ -61,12 +61,24 @@
             >
           </b-nav-form>
 
-           <b-button v-if=isLoggedIn><router-link
+          <router-link
+           v-if=isLoggedIn
+           v-b-hover="handleHover"
               exact
               :to="{ name: 'Checkout' }"
-              class="cart-icon"
-              >My Cart</router-link
-            ></b-button>
+              class=" cart-icon"
+              >  <b-icon-cart-fill
+              v-if="isHovered"
+                icon="cart"
+                class="h4 my-2 mx-3 cart"
+              ></b-icon-cart-fill>
+              <b-icon-cart
+              v-else
+                icon="cart"
+                class="h4 my-2 mx-3 cart"
+              ></b-icon-cart>
+              </router-link
+            >
 
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
@@ -101,18 +113,28 @@
   </div>
 </template>
 <script>
+import { BIconCart, BIconCartFill } from "bootstrap-vue";
 export default {
   name: "TheNavbar",
+   components: { BIconCart, BIconCartFill },
+   data() {
+     return {
+        isHovered: false
+     }
+   },
   props: {
     isLoggedIn : Boolean
   },
-  methods: {
+  methods: {handleHover(hovered) {
+        this.isHovered = hovered
+      },
     logOut() {
       this.$store.dispatch("logOut");
     }
   },
 };
 </script>
+
 <style>
 #nav {
   padding-bottom: 30px;
@@ -127,7 +149,11 @@ export default {
   text-decoration: underline 6.5px;
 }
 
-.cart-icon {
-  text-decoration: none !important;;
+.cart {
+  mask-size: cover;
+}
+
+.cart:hover {
+color: #2c3e50 !important;
 }
 </style>

@@ -48,7 +48,7 @@
               <b-icon-trash
                 @click="removeFromCart(item.book_id)"
                 icon="trash"
-                class="h4 trash"
+                class="h4 mt-2 trash"
               ></b-icon-trash>
             </b-card-text>
           </b-card-body>
