@@ -19,17 +19,10 @@
         </b-carousel-slide>
       </b-carousel>
 
-      <div class="mt-5 p-5 register">
+      <div class="mt-5 p-5 register" v-if="!this.$store.getters.isLoggedIn">
         <h1 class="display-3">Create Your Account</h1>
-       
-          <router-link
-            v-if="!this.$store.getters.isLoggedIn"
-            active-class="active"
-            exact
-            :to="{ name: 'Register' }"
-          > <b-button class="mt-3" size="lg">
-          Register
-        </b-button>
+        <router-link active-class="active" exact :to="{ name: 'Register' }">
+          <b-button class="mt-3" size="lg"> Register </b-button>
         </router-link>
       </div>
 
@@ -41,8 +34,8 @@
             v-bind:key="book.id"
             :id="book.id"
             :title="book.title"
-            :photoURL="book.photoURL"
-            :description="book.description"
+            :photoURL="book.imageUrl"
+            :cost="book.cost"
             :authors="book.authors"
           ></BaseBookCard>
         </b-card-group>
@@ -74,6 +67,6 @@ export default {
 
 .books {
   height: fit-content;
-  background: yellowgreen;
+
 }
 </style>
