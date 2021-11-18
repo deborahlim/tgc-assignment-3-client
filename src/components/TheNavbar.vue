@@ -48,7 +48,7 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-nav-form class="mx-auto my-sm-2 my-lg-0">
+          <!-- <b-nav-form class="mx-auto my-sm-2 my-lg-0">
             <b-form-input
               size="sm"
               class="mr-sm-2"
@@ -57,9 +57,10 @@
             <b-button size="sm" type="submit"
               >Search</b-button
             >
-          </b-nav-form>
+          </b-nav-form> -->
           <b-nav-item class="my-sm-2 my-lg-0">
             <router-link
+            
               v-if="isLoggedIn"
               v-b-hover="handleHover"
               exact
@@ -69,13 +70,17 @@
               <b-icon-cart-fill
                 v-if="isHovered"
                 icon="cart"
-                class="h4 mx-3 cart"
+                class="h5 mx-3 cart"
               ></b-icon-cart-fill>
               <b-icon-cart
                 v-else
                 icon="cart"
-                class="h4 mx-3 cart"
+                class="h5 mx-3 cart"
               ></b-icon-cart>
+              <span class="cart-items-count">
+                {{cartItemsCount}}
+              </span>
+              
             </router-link>
           </b-nav-item>
           <b-nav-item-dropdown text="Account" class="mb-sm-2 mb-lg-0" right>
@@ -116,10 +121,22 @@ export default {
       isHovered: false,
     };
   },
+  created() {
+this.getCart();
+  },
+  computed: {
+    cartItemsCount() {
+      return this.$store.getters.getCart.length;
+    }
+  },
   props: {
     isLoggedIn: Boolean,
   },
   methods: {
+      async getCart() {
+      await this.$store.dispatch("showCart");
+ 
+    },
     handleHover(hovered) {
       this.isHovered = hovered;
     },
@@ -143,6 +160,9 @@ export default {
 #nav a.router-link-exact-active {
   text-decoration: underline 6.5px;
 }
+.cart-icon {
+  text-decoration: none !important;
+}
 
 .cart {
   mask-size: cover;
@@ -150,5 +170,19 @@ export default {
 
 .cart:hover {
   color: #2c3e50 !important;
+}
+
+.cart-items-count {
+  text-decoration: none !important;
+  position: relative;
+  background-color: white;
+  bottom: 15px;
+  left: -25px;
+  border-radius: 100%;
+  padding: 1px;
+  border: 1px solid #000;
+  color: #000;
+  /* text-align: center; */
+  font: 9px Arial, sans-serif;
 }
 </style>

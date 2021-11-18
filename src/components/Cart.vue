@@ -10,12 +10,13 @@
       <b-row no-gutters>
         <b-col md="6">
           <b-card-img
+          height="100%" 
             :src="item.books.imageUrl"
             alt="Image"
             class="rounded-0"
           ></b-card-img>
         </b-col>
-        <b-col md="6" style="background: grey">
+        <b-col md="6" class="d-flex align-items-center">
           <b-card-body :title="item.books.title">
             <b-card-text>
               <p>Cost: ${{ item.books.cost }}</p>
