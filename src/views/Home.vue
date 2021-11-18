@@ -13,7 +13,7 @@
       >
         <b-carousel-slide :img-src="require('../assets/carousel-1.jpg')">
         </b-carousel-slide>
-        <b-carousel-slide :img-src="require('../assets/carousel-2.webp')">
+        <b-carousel-slide :img-src="require('../assets/carousel-2.jpg')">
         </b-carousel-slide>
         <b-carousel-slide :img-src="require('../assets/carousel-3.png')">
         </b-carousel-slide>
