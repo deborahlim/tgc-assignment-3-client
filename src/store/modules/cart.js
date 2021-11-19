@@ -30,7 +30,7 @@ const actions = {
   async showCart(context) {
     let response = await customAxios.get("/api/cart", {
       headers: {
-        authorization: "Bearer " + context.getters.getCustomer.accessToken,
+        authorization: "Bearer " + sessionStorage.getItem("accessToken"),
       },
       params: {
         customer_id: context.getters.getCustomer.id,
@@ -41,7 +41,7 @@ const actions = {
   async addToCart(context, payload) {
     await customAxios.get("/api/cart/add", {
       headers: {
-        authorization: "Bearer " + context.getters.getCustomer.accessToken,
+        authorization: "Bearer " + sessionStorage.getItem("accessToken"),
       },
       params: {
         customer_id: context.getters.getCustomer.id,
@@ -53,7 +53,7 @@ const actions = {
   async deleteFromCart(context, payload) {
     await customAxios.get("/api/cart/remove", {
       headers: {
-        authorization: "Bearer " + context.getters.getCustomer.accessToken,
+        authorization: "Bearer " + sessionStorage.getItem("accessToken"),
       },
       params: {
         customer_id: context.getters.getCustomer.id,
@@ -70,7 +70,7 @@ const actions = {
         new_quantity: parseInt(payload.new_quantity),
       }, {
         headers: {
-          authorization: "Bearer " + context.getters.getCustomer.accessToken,
+          authorization: "Bearer " + sessionStorage.getItem("accessToken"),
         },
       }
     );
@@ -79,7 +79,7 @@ const actions = {
     // console.log("Checkout");
     let result = await customAxios.get("/api/checkout", {
       headers: {
-        authorization: "Bearer " + context.getters.getCustomer.accessToken,
+        authorization: "Bearer " + sessionStorage.getItem("accessToken"),
       },
       params: {
         customer_id: context.getters.getCustomer.id,

@@ -21,7 +21,7 @@ const mutations = {
         console.log("get orders");
         let response = await customAxios.get("/api/orders", {
             headers: {
-                authorization: "Bearer " + context.getters.getCustomer.accessToken,
+                authorization: "Bearer " + sessionStorage.getItem("accessToken"),
               },
             params: {
                 customer_id: context.getters.getCustomer.id

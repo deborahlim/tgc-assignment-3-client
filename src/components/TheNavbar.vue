@@ -129,7 +129,7 @@ export default {
       this.isHovered = hovered;
     },
     async logOut() {
-      await this.$store.dispatch("logOut", {refreshToken: this.$store.getters.getCustomer.refreshToken});
+      await this.$store.dispatch("logOut", {refreshToken: sessionStorage.getItem("refreshToken")});
     },
   },
 };

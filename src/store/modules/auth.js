@@ -1,4 +1,5 @@
 const customAxios = require("../../../utils/customAxios");
+import VueJwtDecode from 'vue-jwt-decode'
 let timer;
 const expireBy = 600000;
 const state = {
@@ -64,7 +65,7 @@ const actions = {
     // return error;
     // }
   },
-  autoLogin(context, payload) {
+  autoLogin(context) {
    // check if session storage contains access token and refresh token 
   const refreshToken = sessionStorage.getItem("refreshToken");
   const accessToken = sessionStorage.getItem("accessToken");
@@ -79,7 +80,8 @@ const actions = {
     context.dispatch("refresh", {refreshToken: refreshToken})}, expiresIn
   )
     if(accessToken && refreshToken) {
-      context.commit("setCustomer", payload)
+      const customerInfo = VueJwtDecode.decode(accessToken)
+      context.commit("setCustomer", customerInfo)
     }
   },
   async refresh(context, payload) {

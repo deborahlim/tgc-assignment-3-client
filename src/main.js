@@ -6,7 +6,6 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import router from "./router";
 import store from "./store";
 import VueFormulate from '@braid/vue-formulate'
-import VueJwtDecode from 'vue-jwt-decode'
 import '@braid/vue-formulate/dist/snow.min.css'
 // import FormErrorHandler from "./../utils/formErrorHandler"
 Vue.use(VueFormulate, {
@@ -29,6 +28,5 @@ new Vue({
   router,
   store,
   BootstrapVue,
-  VueJwtDecode,
   render: (h) => h(App),
 }).$mount("#app");
