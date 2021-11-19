@@ -43,14 +43,17 @@ const actions = {
         error = err;
         throw error;
       });
+      // set future expiration date to 10min from current time
     const expirationDate = new Date().getTime() + expireBy
-    sessionStorage.setItem("customerInfo", JSON.stringify(response.data));
+    // save access token and refresh token in session storage 
+    sessionStorage.setItem("accessToken", response.data.accessToken);
+    sessionStorage.setItem("refreshToken", response.data.refreshToken);
     sessionStorage.setItem("accessTokenExpiration", expirationDate);
    
-    
+    // set timer and get provide the access token to get new access token from after 10 min
     timer = setTimeout(function() {
-      const customerInfo = JSON.parse(sessionStorage.getItem("customerInfo")) ;
-      context.dispatch("refresh", {refreshToken: customerInfo.refreshToken});
+      const refreshToken = sessionStorage.getItem("refreshToken") ;
+      context.dispatch("refresh", {refreshToken: refreshToken});
     }, expireBy)
 
     context.commit(
@@ -61,19 +64,22 @@ const actions = {
     // return error;
     // }
   },
-  autoLogin(context) {
-  const customerInfo = JSON.parse(sessionStorage.getItem("customerInfo")) ;
+  autoLogin(context, payload) {
+   // check if session storage contains access token and refresh token 
+  const refreshToken = sessionStorage.getItem("refreshToken");
+  const accessToken = sessionStorage.getItem("accessToken");
   const accessTokenExpiration = sessionStorage.getItem("accessTokenExpiration");
     // console.log(accessTokenExpiration);
+    // set new timer to remaining time left
   const expiresIn = +accessTokenExpiration - new Date().getTime();
   if(expiresIn < 0) {
     return;
   }
   timer = setTimeout(function() {
-    context.dispatch("refresh", {refreshToken: customerInfo.refreshToken})}, expiresIn
+    context.dispatch("refresh", {refreshToken: refreshToken})}, expiresIn
   )
-    if(customerInfo.accessToken && customerInfo.refreshToken) {
-      context.commit("setCustomer", customerInfo)
+    if(accessToken && refreshToken) {
+      context.commit("setCustomer", payload)
     }
   },
   async refresh(context, payload) {
@@ -85,9 +91,7 @@ const actions = {
     });
     const expirationDate = new Date().getTime() + expireBy
     sessionStorage.setItem("accessTokenExpiration", expirationDate);
-    let customerInfo = JSON.parse(sessionStorage.getItem("customerInfo"));
-    customerInfo.accessToken = response.data.accessToken; 
-    sessionStorage.setItem("customerInfo", JSON.stringify(customerInfo));
+    sessionStorage.setItem("accessToken", response.data.accessToken); 
     context.commit("setAccessToken", response.data)
   },
   async register(context, payload) {
@@ -98,7 +102,7 @@ const actions = {
         console.dir(err);
         error = err;
         throw error;
-      });
+      });``
     return response.data;
   },
 
@@ -110,7 +114,8 @@ const actions = {
       throw error;
     });
     if (response.data) {
-      sessionStorage.removeItem("customerInfo");
+      sessionStorage.removeItem("accessToken");
+      sessionStorage.removeItem("refreshToken");
       sessionStorage.removeItem("accessTokenExpiration");
       clearTimeout(timer);
   

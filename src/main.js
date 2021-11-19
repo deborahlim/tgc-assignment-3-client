@@ -6,6 +6,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import router from "./router";
 import store from "./store";
 import VueFormulate from '@braid/vue-formulate'
+import VueJwtDecode from 'vue-jwt-decode'
 import '@braid/vue-formulate/dist/snow.min.css'
 // import FormErrorHandler from "./../utils/formErrorHandler"
 Vue.use(VueFormulate, {
@@ -15,7 +16,7 @@ Vue.use(BootstrapVue)
 Vue.config.productionTip = false;
 
 router.beforeEach((to, from, next) => {
-  store.dispatch("autoLogin")
+ store.dispatch("autoLogin");
   if (to.meta.requiresAuth && !store.getters.isLoggedIn) {
     next('/login')
   } else if (to.meta.requiresUnAuth && store.getters.isLoggedIn) {
@@ -28,5 +29,6 @@ new Vue({
   router,
   store,
   BootstrapVue,
+  VueJwtDecode,
   render: (h) => h(App),
 }).$mount("#app");
