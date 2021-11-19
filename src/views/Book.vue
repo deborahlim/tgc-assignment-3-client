@@ -4,23 +4,25 @@
     <div>
       <b-row gutters-2>
         <b-col md="6">
-      <b-img :src="selectedBook.photoURL" fluid alt="Responsive image"></b-img>
+      <b-img :src="selectedBook.imageUrl" fluid alt="Responsive image"></b-img>
       </b-col>
-      <b-col md="6">
-      <p>{{ selectedBook.cost }}</p>
-      <p>{{ selectedBook.description }}</p>
-      <p>{{ selectedBook.formats.name }}</p>
-      <p>{{ selectedBook.publishers.name }}</p>
-      <p>{{ selectedBook.genres.name }}</p>
-      <p v-for="tag in selectedBook.tags" v-bind:key="tag.id">{{ tag.name }}</p>
+      <b-col md="6" class="mt-4">
+      <p> <span class="font-weight-bold">Price: </span> ${{ selectedBook.cost }}</p>
+      <p> <span class="font-weight-bold">Description: </span> {{ selectedBook.description }}</p>
+      <p> <span class="font-weight-bold">Format: </span>{{ selectedBook.formats.name }}</p>
+      <p> <span class="font-weight-bold">Publisher: </span>{{ selectedBook.publishers.name }}</p>
+      <p> <span class="font-weight-bold">Genre: </span>{{ selectedBook.genres.name }}</p>
+      <p v-for="tag in selectedBook.tags" v-bind:key="tag.id"> <span class="font-weight-bold">Tag(s): </span> <b-badge variant="primary">{{ tag.name }}</b-badge></p>
       <p v-for="author in selectedBook.authors" v-bind:key="author.id">
-        {{ author.name }}
+       <span class="font-weight-bold"> Author(s):</span>  {{ author.name }} 
       </p>
       </b-col>
       
       </b-row>
             <b-button v-if="inStock" @click="submitAddToCart" class="my-5" variant="outline-primary"
-        >Add To Cart</b-button
+        >Add To Cart</b-button>
+        <b-button @click="goToHome" class="my-5 ml-2" variant="outline-danger"
+        >Back to Books</b-button
       >
       <b-sidebar
         :visible="isCartVisible"
@@ -91,6 +93,9 @@ export default {
       await this.$store.dispatch("showCart");
       this.addOne += 1
     },
+    goToHome() {
+      this.$router.push({name: "Home"});
+    }
   },
 };
 </script>
@@ -98,6 +103,6 @@ export default {
 <style scoped>
 .book {
   height: fit-content;
-  background: salmon;
+  /* background: salmon; */
 }
 </style>

@@ -12,6 +12,9 @@ const getters = {
   getCheckoutInfo() {
     return state.checkout;
   },
+  getCartItemsCount() {
+    return state.cart ? state.cart.length : 0;
+  }
 };
 
 const mutations = {

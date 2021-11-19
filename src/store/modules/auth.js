@@ -102,13 +102,22 @@ const actions = {
     return response.data;
   },
 
-  logOut(context) {
-    sessionStorage.removeItem("customerInfo");
-    sessionStorage.removeItem("accessTokenExpiration");
-    clearTimeout(timer);
-    context.commit("setCustomer",
-    null,
-    );
+  async logOut(context, payload) {
+    let error;
+    let response = await customAxios.post("api/customers/logout", payload).catch((err) => {
+      console.dir(err);
+      error = err;
+      throw error;
+    });
+    if (response.data) {
+      sessionStorage.removeItem("customerInfo");
+      sessionStorage.removeItem("accessTokenExpiration");
+      clearTimeout(timer);
+  
+      context.commit("setCustomer",
+      null,
+      );
+    }  
   },
 };
 

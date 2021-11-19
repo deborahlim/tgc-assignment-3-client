@@ -1,7 +1,7 @@
 <template>
-  <div class="p-5">
+  <div class="p-5 checkout">
     <h1 class="display-5">My Cart</h1>
-    <div class="cart">
+    <div class="checkout-cart">
       <Cart></Cart>
     </div>
     <div v-if="!!retrieveCheckoutInfo && retrieveCart">
@@ -14,7 +14,7 @@
     </div>
     <div v-else>
       <p>Add Items to your Cart!</p>
-      <b-button>Go to Books</b-button>
+      <b-button @click="goToHome">Go to Books</b-button>
     </div>
   </div>
 </template>
@@ -59,17 +59,16 @@ export default {
       // You will be redirected to Stripe's secure checkout page
       this.$refs.checkoutRef.redirectToCheckout();
     },
+    goToHome() {
+      this.$router.push({ name: "Home" });
+    },
   },
 };
 </script>
 
 <style>
-.cart {
-  width: 70%;
+.checkout-cart {
+  height: 500px !important;
   margin: 0 auto;
-}
-
-.checkout {
-  background: violet;
 }
 </style>

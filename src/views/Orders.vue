@@ -31,10 +31,10 @@
               
           </b-col>
           <b-col md="2">
-        <p>{{ formatCost(items.books.cost * items.quantity)  }}</p>
+        <p>{{items.books.cost * items.quantity  }}</p>
           </b-col>
         </b-row>
-         <p class="lead">Order Total: {{ formatCost(order.amountTotal)}}</p>
+         <p class="lead">Order Total: ${{order.amountTotal}}</p>
       </b-card>
     </div>
   </div>

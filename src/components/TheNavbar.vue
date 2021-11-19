@@ -58,10 +58,10 @@
               >Search</b-button
             >
           </b-nav-form> -->
-          <b-nav-item class="my-sm-2 my-lg-0">
+          <b-nav-item class="my-sm-2 my-lg-0"  v-if="isLoggedIn">
             <router-link
             
-              v-if="isLoggedIn"
+             
               v-b-hover="handleHover"
               exact
               :to="{ name: 'Checkout' }"
@@ -78,7 +78,7 @@
                 class="h5 mx-3 cart"
               ></b-icon-cart>
               <span class="cart-items-count">
-                {{cartItemsCount}}
+            {{ cartItemsCount}}
               </span>
               
             </router-link>
@@ -95,7 +95,7 @@
                 >Log In</router-link
               ></b-dropdown-item
             >
-            <b-dropdown-item @click="logOut" v-else
+            <b-dropdown-item @click="logOut" v-if=isLoggedIn
               ><router-link
                 
                 class="nav-link"
@@ -121,27 +121,15 @@ export default {
       isHovered: false,
     };
   },
-  created() {
-this.getCart();
-  },
-  computed: {
-    cartItemsCount() {
-      return this.$store.getters.getCart.length;
-    }
-  },
   props: {
-    isLoggedIn: Boolean,
+    isLoggedIn: Boolean, cartItemsCount: Number
   },
   methods: {
-      async getCart() {
-      await this.$store.dispatch("showCart");
- 
-    },
     handleHover(hovered) {
       this.isHovered = hovered;
     },
-    logOut() {
-      this.$store.dispatch("logOut");
+    async logOut() {
+      await this.$store.dispatch("logOut", {refreshToken: this.$store.getters.getCustomer.refreshToken});
     },
   },
 };

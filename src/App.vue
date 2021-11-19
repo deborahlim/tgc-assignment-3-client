@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <TheNavbar :isLoggedIn=!!this.$store.getters.isLoggedIn ></TheNavbar>
+      <TheNavbar :isLoggedIn=!!this.$store.getters.isLoggedIn :cartItemsCount="retrieveCartItemsCount" ></TheNavbar>
     </div>
     <router-view />
   </div>
@@ -15,9 +15,11 @@ export default {
   components: {
     TheNavbar
   },
-created() {
- 
-},
+computed: {
+  retrieveCartItemsCount() {
+    return this.$store.getters.getCartItemsCount
+  }
+}
 };
 </script>
 

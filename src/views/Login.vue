@@ -27,6 +27,7 @@ export default {
     async login(data) {
       try {
         await this.$store.dispatch("login", data);
+        await this.$store.dispatch("showCart");
         this.$router.replace({
           name: "Home",
         });
