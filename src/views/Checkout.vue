@@ -68,7 +68,7 @@ export default {
 
 <style>
 .checkout-cart {
-  height: 500px !important;
+  /* height: 500px !important; */
   margin: 0 auto;
 }
 </style>

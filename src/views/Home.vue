@@ -22,7 +22,7 @@
       <div class="mt-5 p-5 register" v-if="!this.$store.getters.isLoggedIn">
         <h1 class="display-3">Create Your Account</h1>
         <router-link active-class="active" exact :to="{ name: 'Register' }">
-          <b-button class="mt-3" size="lg"> Register </b-button>
+          <b-button class="btn btn-info mt-3" size="lg"> Register </b-button>
         </router-link>
       </div>
 
@@ -62,7 +62,7 @@ export default {
 <style scoped>
 .register {
   height: fit-content;
-  background: wheat;
+  /* background: wheat; */
 }
 
 .books {

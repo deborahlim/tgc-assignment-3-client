@@ -53,6 +53,10 @@
           data-ghost
           @click="reset"
         />
+
+          <p>Have an account? <a class="link text-info font-weight-bold" @click="goToLogin">Log In</a></p>
+       
+        
       </FormulateForm>
     </div>
   </div>
@@ -74,15 +78,18 @@ export default {
     };
   },
   methods: {
+    goToLogin() {
+ this.$router.replace({
+          name: "Login",
+        });
+    },
     async register(data) {
       try {
         let { confirmPassword, ...formData } = data;
         console.log(confirmPassword, formData);
 
         await this.$store.dispatch("register", formData);
-        this.$router.replace({
-          name: "Login",
-        });
+       this.goToLogin();
       } catch (err) {
         const errors = { 
           formErrors: err.response === undefined

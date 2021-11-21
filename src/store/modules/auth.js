@@ -66,6 +66,7 @@ const actions = {
     // }
   },
   autoLogin(context) {
+    console.log("AUTOLOGIN");
    // check if session storage contains access token and refresh token 
   const refreshToken = sessionStorage.getItem("refreshToken");
   const accessToken = sessionStorage.getItem("accessToken");
@@ -85,6 +86,7 @@ const actions = {
     }
   },
   async refresh(context, payload) {
+    console.log("REFRESH");
     let error;
     let response = await customAxios.post("api/customers/refresh", payload).catch((err) => {
       console.dir(err);

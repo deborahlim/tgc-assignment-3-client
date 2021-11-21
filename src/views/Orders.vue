@@ -4,7 +4,7 @@
     <div class="order-card" v-if="!!getOrders">
       <b-card
         no-body
-        class="overflow-hidden mb-5"
+        class="overflow-hidden mb-5 card"
         v-for="order in getOrders"
         v-bind:key="order.id"
       >

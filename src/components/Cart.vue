@@ -51,7 +51,7 @@
                 />
                 <div class="d-inline-flex">
                   <FormulateInput
-                    element-class=""
+                    input-class="btn bg-info"
                     type="submit"
                     label="Update"
                   />
