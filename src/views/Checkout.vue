@@ -10,8 +10,10 @@
         :pk="getPublishableKey"
         :session-id="getSessionId"
       />
-      <b-button class="m-3" @click="submit"> Checkout! </b-button>
     </div>
+    <b-button v-if="retrieveCart" class="m-3" @click="submit">
+      Checkout!
+    </b-button>
     <div v-else>
       <p>Add Items to your Cart!</p>
       <b-button @click="goToHome">Go to Books</b-button>
@@ -29,7 +31,7 @@ export default {
   },
   created() {
     this.getCart();
-    this.getCheckoutInfo();
+    this.retrieveCart;
   },
   computed: {
     getPublishableKey() {
@@ -55,9 +57,10 @@ export default {
     async getCheckoutInfo() {
       await this.$store.dispatch("checkoutCart");
     },
-    submit() {
+    async submit() {
       // You will be redirected to Stripe's secure checkout page
-      this.$refs.checkoutRef.redirectToCheckout();
+      await this.getCheckoutInfo();
+      await this.$refs.checkoutRef.redirectToCheckout();
     },
     goToHome() {
       this.$router.push({ name: "Home" });
