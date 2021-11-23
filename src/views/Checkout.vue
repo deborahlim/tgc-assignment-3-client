@@ -1,24 +1,24 @@
 <template>
-  <div class="p-5 checkout">
-    <h1 class="display-5">My Cart</h1>
-    <div class="checkout-cart">
-      <Cart></Cart>
+    <div class="p-5 checkout form">
+      <h1 class="display-5">My Cart</h1>
+      <div class="checkout-cart">
+        <Cart></Cart>
+      </div>
+      <div v-if="!!retrieveCheckoutInfo">
+        <StripeCheckout
+          ref="checkoutRef"
+          :pk="getPublishableKey"
+          :session-id="getSessionId"
+        />
+      </div>
+      <b-button v-if="retrieveCart" class="m-3" @click="submit">
+        Checkout!
+      </b-button>
+      <div v-if="!retrieveCart">
+        <p>Add Items to your Cart!</p>
+        <b-button @click="goToHome">Go to Books</b-button>
+      </div>
     </div>
-    <div v-if="!!retrieveCheckoutInfo && retrieveCart">
-      <StripeCheckout
-        ref="checkoutRef"
-        :pk="getPublishableKey"
-        :session-id="getSessionId"
-      />
-    </div>
-    <b-button v-if="retrieveCart" class="m-3" @click="submit">
-      Checkout!
-    </b-button>
-    <div v-else>
-      <p>Add Items to your Cart!</p>
-      <b-button @click="goToHome">Go to Books</b-button>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -44,7 +44,7 @@ export default {
       return this.$store.getters.getCheckoutInfo;
     },
     retrieveCart() {
-      if (this.$store.getters.getCart.length === 0) {
+      if (this.$store.getters.getCartItemsCount === 0) {
         return false;
       }
       return true;
@@ -72,6 +72,11 @@ export default {
 <style>
 .checkout-cart {
   /* height: 500px !important; */
+  margin: 0 auto;
+}
+
+.form {
+  width: 80%;
   margin: 0 auto;
 }
 </style>

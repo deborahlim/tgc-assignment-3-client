@@ -1,5 +1,5 @@
 <template>
-  <div class="col-sm-12 col-md-6 col-lg-4 mb-4" v-b-hover="handleHover">
+  <div class="col-sm-12 col-md-6 col-xl-4 mb-4" v-b-hover="handleHover">
     <b-card
       style="cursor: pointer; height: 500px"
       @click="goToBookDetails"
