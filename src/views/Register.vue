@@ -46,13 +46,7 @@
           validation-name="Password confirmation"
         />
         <FormulateErrors />
-        <FormulateInput type="submit" label="Register Account" />
-        <FormulateInput
-          type="button"
-          label="Reset Form"
-          data-ghost
-          @click="reset"
-        />
+        <FormulateInput input-class="btn bg-info" type="submit" label="Register Account" />
 
           <p>Have an account? <a class="link text-info font-weight-bold" @click="goToLogin">Log In</a></p>
        

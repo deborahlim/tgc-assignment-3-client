@@ -29,15 +29,12 @@
       <div class="books mt-5 p-5">
         <h2 class="display-4">Our Books</h2>
         <div>
-          <label class="sr-only" for="inline-form-input-name">Name</label>
           <b-form-input
             v-model="title"
             id="inline-form-input-name"
-            class="mb-2 mr-sm-2 mb-sm-0"
-            placeholder="Enter title"
+            class="my-5 search"
+            placeholder="Find a book"
           ></b-form-input>
-
-          <b-button variant="primary">Search</b-button>
         </div>
         <b-card-group deck class="m-3">
           <BaseBookCard
@@ -71,16 +68,15 @@ export default {
     this.loadBooks();
   },
   computed: {
-    getBooks() {
-      return this.$store.getters.getBooks;
-    },
     selectedBooks() {
       let selected = [];
-      for (let book of this.getBooks) {
-        console.log(book);
-        // if (book.title.includes(this.title)) {
-        //   selected.push(book);
-        // }
+      let books = this.$store.getters.getBooks;
+      if (books) {
+        books.forEach((book) => {
+          if (book.title.toLowerCase().includes(this.title.toLowerCase())) {
+            selected.push(book);
+          }
+        });
       }
       return selected;
     },
@@ -97,6 +93,11 @@ export default {
 .register {
   height: fit-content;
   /* background: wheat; */
+}
+
+.search {
+width: 50% !important;
+ margin: 0 auto; 
 }
 
 .books {

@@ -21,12 +21,6 @@ const actions = {
     let response = await customAxios.get("/api/books");
     context.commit("showBooks", response.data);
   },
-
-  async displaySelectedBook(context, payload) {
-    console.log("PAYLOAD", payload)
-    let response = await customAxios.get("/api/books/selected");
-    context.commit("showBooks", response.data);
-  }
 };
 
 export default {
