@@ -48,16 +48,6 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <!-- <b-nav-form class="mx-auto my-sm-2 my-lg-0">
-            <b-form-input
-              size="sm"
-              class="mr-sm-2"
-              placeholder="Search"
-            ></b-form-input>
-            <b-button size="sm" type="submit"
-              >Search</b-button
-            >
-          </b-nav-form> -->
           <b-nav-item class="my-sm-2 my-lg-0"  v-if="isLoggedIn">
             <router-link
             
@@ -125,6 +115,9 @@ export default {
     isLoggedIn: Boolean, cartItemsCount: Number
   },
   methods: {
+    searchBooks() {
+      this.$store.dispatch("displayBooks", this.form.name)
+    },
     handleHover(hovered) {
       this.isHovered = hovered;
     },

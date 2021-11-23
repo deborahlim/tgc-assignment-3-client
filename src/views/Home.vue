@@ -27,10 +27,21 @@
       </div>
 
       <div class="books mt-5 p-5">
-        <h2 class="display-4">Bestselling Books</h2>
+        <h2 class="display-4">Our Books</h2>
+        <div>
+          <label class="sr-only" for="inline-form-input-name">Name</label>
+          <b-form-input
+            v-model="title"
+            id="inline-form-input-name"
+            class="mb-2 mr-sm-2 mb-sm-0"
+            placeholder="Enter title"
+          ></b-form-input>
+
+          <b-button variant="primary">Search</b-button>
+        </div>
         <b-card-group deck class="m-3">
           <BaseBookCard
-            v-for="book in this.$store.getters.getBooks"
+            v-for="book in selectedBooks"
             v-bind:key="book.id"
             :id="book.id"
             :title="book.title"
@@ -53,8 +64,31 @@ export default {
   components: {
     BaseBookCard,
   },
-  async created() {
-    await this.$store.dispatch("displayBooks");
+  data() {
+    return { title: "" };
+  },
+  created() {
+    this.loadBooks();
+  },
+  computed: {
+    getBooks() {
+      return this.$store.getters.getBooks;
+    },
+    selectedBooks() {
+      let selected = [];
+      for (let book of this.getBooks) {
+        console.log(book);
+        // if (book.title.includes(this.title)) {
+        //   selected.push(book);
+        // }
+      }
+      return selected;
+    },
+  },
+  methods: {
+    async loadBooks() {
+      await this.$store.dispatch("displayBooks");
+    },
   },
 };
 </script>
@@ -67,6 +101,5 @@ export default {
 
 .books {
   height: fit-content;
-
 }
 </style>

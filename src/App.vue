@@ -16,10 +16,16 @@ export default {
     TheNavbar
   },
   created() {
+    this.getBooks();
   },
 computed: {
   retrieveCartItemsCount() {
     return this.$store.getters.getCartItemsCount
+  }
+},
+methods: {
+  getBooks() {
+    this.$store.dispatch("displayBooks")
   }
 }
 };

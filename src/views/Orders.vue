@@ -1,10 +1,12 @@
 <template>
   <div>
     <h1>Orders</h1>
+    <b-tabs>
     <div class="order-card" v-if="!!getOrders">
+      <b-tab v-for="status in statusesArr" :key="status" :title="status" active>
       <b-card
         no-body
-        class="overflow-hidden mb-5 card"
+        class="mb-5 p-3 card"
         v-for="order in getOrders"
         v-bind:key="order.id"
       >
@@ -17,8 +19,8 @@
         >
           <b-col md="4">
             <b-img
+              style="height:300px"
               thumbnail
-              fluid
               :src="items.books.imageUrl"
               alt="Image"
               class="rounded-0"
@@ -32,21 +34,27 @@
               
           </b-col>
           <b-col md="2">
-        <p>{{items.books.cost * items.quantity  }}</p>
+        <p>${{items.books.cost * items.quantity  }}</p>
           </b-col>
         </b-row>
          <p class="lead">Total Amount: ${{order.amountTotal}}</p>
           <p class="lead">Status: {{capitalise(order.orderStatuses.name)}}</p>
       </b-card>
+      </b-tab>
+  
     </div>
+     </b-tabs>
   </div>
+
 </template>
 
 <script>
 export default {
   name: "Orders",
   data() {
-    return {};
+    return {
+      statusesArr : ["unpaid", "paid", "shipped", "completed"]
+    };
   },
   computed: {
     getOrders() {

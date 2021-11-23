@@ -14,8 +14,6 @@
 
 export default {
   name: "CheckoutError",
-  created() {
-  },
 computed: {
 }
 };
