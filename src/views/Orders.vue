@@ -3,11 +3,11 @@
     <h1>Orders</h1>
     <b-tabs>
     <div class="order-card" v-if="!!getOrders">
-      <b-tab v-for="status in statusesArr" :key="status" :title="status" active>
+      <b-tab v-for="status in statusesArr" :key="status" :title="capitalise(status)" active>
       <b-card
         no-body
         class="mb-5 p-3 card"
-        v-for="order in getOrders"
+        v-for="order in getFilteredOrders(status)"
         v-bind:key="order.id"
       >
         <p class="lead font-weight-bold m-5">Order # {{ order.id }}</p>
@@ -60,11 +60,21 @@ export default {
     getOrders() {
       return this.$store.getters.getOrders;
     },
+
   },
   created() {
     this.loadOrders();
   },
   methods: {
+        getFilteredOrders(status) {
+      let filtered = [];
+      for(let order of this.getOrders) {
+        if(order.orderStatuses.name === status) {
+          filtered.push(order)
+        }
+      }
+      return filtered;
+    },
     capitalise(str) {
       return str.charAt(0).toUpperCase() + str.slice(1)
     },
