@@ -11,7 +11,7 @@
           :session-id="getSessionId"
         />
       </div>
-      <b-button v-if="retrieveCart" class="m-3" @click="submit">
+      <b-button v-if="retrieveCart" class="btn btn-info m-3 btn-lg" @click="submit">
         Checkout!
       </b-button>
       <div v-if="!retrieveCart">

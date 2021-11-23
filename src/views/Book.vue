@@ -33,12 +33,12 @@
         shadow
       >
         <Cart :key="addOne"></Cart>
-         <b-button><router-link
+      <router-link
               exact
               :to="{ name: 'Checkout' }"
-              class="btn"
+              class="btn btn-outline-info btn-lg mb-5 "
               >My Cart</router-link
-            ></b-button>
+            >
       </b-sidebar>
     </div>
   </div>
