@@ -15,6 +15,8 @@ export default {
   components: {
     TheNavbar
   },
+  created() {
+  },
 computed: {
   retrieveCartItemsCount() {
     return this.$store.getters.getCartItemsCount

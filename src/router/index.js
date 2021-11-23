@@ -86,7 +86,7 @@ const routes = [{
     }
   },
   {
-    path: "/checkout/success",
+    path: "/checkout/success/",
     component: () =>
       import( /* webpackChunkName: "checkoutSuccess" */ "../views/CheckoutSuccess.vue"),
     name: "CheckoutSuccess",

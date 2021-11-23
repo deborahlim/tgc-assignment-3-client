@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Your Checkout is successful</h1>
+    <h1>Your Checkout {{session_id}} is successful</h1>
     <router-link
       class="btn btn-info"
       active-class="active"
@@ -10,3 +10,11 @@
     >
   </div>
 </template>
+
+<script>
+
+export default {
+name: "CheckoutSuccess",
+props: { session_id: String },
+}
+</script>

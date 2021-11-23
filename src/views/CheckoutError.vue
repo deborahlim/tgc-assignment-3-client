@@ -9,3 +9,14 @@
             >
             </div>
 </template>
+
+<script>
+
+export default {
+  name: "CheckoutError",
+  created() {
+  },
+computed: {
+}
+};
+</script>

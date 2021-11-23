@@ -9,6 +9,7 @@
         v-bind:key="order.id"
       >
         <p class="lead font-weight-bold m-5">Order # {{ order.id }}</p>
+        <p class="font-weight-bold" >Created At: {{new Date(order.createdAt)}}</p>
         <b-row
           v-for="items in order.orderItems"
           v-bind:key="items.id"
@@ -34,7 +35,8 @@
         <p>{{items.books.cost * items.quantity  }}</p>
           </b-col>
         </b-row>
-         <p class="lead">Order Total: ${{order.amountTotal}}</p>
+         <p class="lead">Total Amount: ${{order.amountTotal}}</p>
+          <p class="lead">Status: {{capitalise(order.orderStatuses.name)}}</p>
       </b-card>
     </div>
   </div>
@@ -55,6 +57,9 @@ export default {
     this.loadOrders();
   },
   methods: {
+    capitalise(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1)
+    },
     async loadOrders() {
       await this.$store.dispatch("displayOrders");
     },
