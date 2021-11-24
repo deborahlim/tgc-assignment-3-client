@@ -48,10 +48,8 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-nav-item class="my-sm-2 my-lg-0"  v-if="isLoggedIn">
+          <b-nav-item class="my-sm-2 my-lg-0" v-if="isLoggedIn">
             <router-link
-            
-             
               v-b-hover="handleHover"
               exact
               :to="{ name: 'Checkout' }"
@@ -68,32 +66,36 @@
                 class="h5 mx-3 cart"
               ></b-icon-cart>
               <span class="cart-items-count">
-            {{ cartItemsCount}}
+                {{ cartItemsCount }}
               </span>
-              
             </router-link>
           </b-nav-item>
-          <b-nav-item-dropdown text="Account" class="mb-sm-2 mb-lg-0" right>
+          <b-nav-item v-if="!isLoggedIn">
+            <router-link
+              class="nav-link"
+              active-class="active"
+              exact
+              :to="{ name: 'Login' }"
+              >Log In</router-link
+            >
+          </b-nav-item>
+          <b-nav-item-dropdown
+            :text="displayCustomer"
+            class="mb-sm-2 mb-lg-0"
+            right
+            v-if="isLoggedIn"
+          >
             <b-dropdown-item
-            v-if="!isLoggedIn"
               ><router-link
-                
                 class="nav-link"
                 active-class="active"
                 exact
-                :to="{ name: 'Login' }"
-                >Log In</router-link
+                :to="{ name: 'Account' }"
+                >Account</router-link
               ></b-dropdown-item
             >
-            <b-dropdown-item @click="logOut" v-if=isLoggedIn
-              ><router-link
-                
-                class="nav-link"
-                active-class="active"
-                exact
-                :to="{ name: 'Home' }"
-                >Log Out</router-link
-              ></b-dropdown-item
+            <b-dropdown-item class="nav-link" @click="logOut"
+              >Log Out</b-dropdown-item
             >
           </b-nav-item-dropdown>
         </b-navbar-nav>
@@ -112,17 +114,30 @@ export default {
     };
   },
   props: {
-    isLoggedIn: Boolean, cartItemsCount: Number
+    isLoggedIn: Boolean,
+    cartItemsCount: Number,
+  },
+  computed: {
+    displayCustomer() {
+      return this.$store.getters.getCustomer.username;
+    },
   },
   methods: {
     searchBooks() {
-      this.$store.dispatch("displayBooks", this.form.name)
+      this.$store.dispatch("displayBooks", this.form.name);
     },
     handleHover(hovered) {
       this.isHovered = hovered;
     },
     async logOut() {
-      await this.$store.dispatch("logOut", {refreshToken: sessionStorage.getItem("refreshToken")});
+      await this.$store.dispatch("logOut", {
+        refreshToken: sessionStorage.getItem("refreshToken"),
+      });
+      if (!(this.$router.currentRoute.name === "Home")) {
+        this.$router.replace({
+          name: "Home",
+        });
+      }
     },
   },
 };

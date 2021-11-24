@@ -104,6 +104,15 @@ const routes = [{
     }
   },
   {
+    path: "/account",
+    component: () =>
+      import( /* webpackChunkName: "checkout" */ "../views/Account.vue"),
+    name: "Account",
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
     path: "/:notFound(.*)",
     component: NotFound
   }
