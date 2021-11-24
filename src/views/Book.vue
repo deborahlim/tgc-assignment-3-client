@@ -36,7 +36,7 @@
       <router-link
               exact
               :to="{ name: 'Checkout' }"
-              class="btn btn-outline-info btn-lg mb-5 "
+              class="btn btn-outline-info m-4"
               >My Cart</router-link
             >
       </b-sidebar>

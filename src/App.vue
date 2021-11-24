@@ -34,4 +34,26 @@ computed: {
   color: #2c3e50;
 }
 
+@media only screen and (max-width: 600px) {
+      #app {
+        padding: 10px
+      };
+     .form {
+         width: 100% !important;
+     }
+ }
+
+ @media only screen and (max-width: 1024px) {
+    #app {
+        padding: 20px
+      };
+
+     .form {
+         width: 80% !important;
+     }
+ }
+
+.formulate-input .formulate-input-element {
+  max-width: none !important;
+}
 </style>

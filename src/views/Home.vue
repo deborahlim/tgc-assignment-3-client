@@ -26,7 +26,7 @@
         </router-link>
       </div>
 
-      <div class="books mt-5 p-5">
+      <div class="books mt-5 p-sm-2 p-lg-5">
         <h2 class="display-4">Our Books</h2>
         <div>
           <b-form-input

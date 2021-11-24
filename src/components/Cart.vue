@@ -1,13 +1,13 @@
 <template>
-  <div class="py-sm-2 py-md-5">
+  <div class="pt-sm-2 pt-md-5">
     <b-card
-    style="cursor: pointer; height: 400px"
+    style="cursor: pointer;"
       v-for="item in displayCart"
       v-bind:key="item.id"
       no-body
       class="overflow-hidden text-wrap cart-item"
     >
-      <p class="lead font-weight-bold">{{ item.books.title }}</p>
+      <p class="pt-2 lead font-weight-bold">{{ item.books.title }}</p>
       <b-row no-gutters style="height:100%">
         <b-col md="6" class="d-flex align-items-center justify-content-center">
           <b-card-img
@@ -18,7 +18,7 @@
           ></b-card-img>
         </b-col>
         <b-col md="6" class="d-flex align-items-center">
-          <b-card-body>
+          <b-card-body class="pb-0">
             <b-card-text>
               <p>
                 <span class="font-weight-bold">Price: </span>${{

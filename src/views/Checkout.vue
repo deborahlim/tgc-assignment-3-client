@@ -1,24 +1,27 @@
 <template>
-    <div class="p-5 checkout form">
-      <h1 class="display-5">My Cart</h1>
-      <div class="checkout-cart">
-        <Cart></Cart>
-      </div>
-      <div v-if="!!retrieveCheckoutInfo">
-        <StripeCheckout
-          ref="checkoutRef"
-          :pk="getPublishableKey"
-          :session-id="getSessionId"
-        />
-      </div>
-      <b-button v-if="retrieveCart" class="btn btn-info m-3 btn-lg" @click="submit">
-        Checkout!
-      </b-button>
-      <div v-if="!retrieveCart">
-        <p>Add Items to your Cart!</p>
-        <b-button @click="goToHome">Go to Books</b-button>
-      </div>
+  <div class="p-lg-5 checkout form">
+    <h1 class="display-3 mb-5">My Cart</h1>
+    <div class="checkout-cart" v-if="retrieveCart">
+      <Cart></Cart>
+    <div v-if="!!retrieveCheckoutInfo">
+      <StripeCheckout
+        ref="checkoutRef"
+        :pk="getPublishableKey"
+        :session-id="getSessionId"
+      />
     </div>
+    <b-button
+      class="btn btn-info m-3 btn-lg"
+      @click="submit"
+    >
+      Checkout!
+    </b-button>
+     </div>
+    <div v-if="!retrieveCart">
+      <h3 class="m-3">Add Items to your Cart!</h3>
+      <b-button variant="info" @click="goToHome">Go to Books</b-button>
+    </div>
+  </div>
 </template>
 
 <script>

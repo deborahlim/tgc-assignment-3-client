@@ -61,18 +61,6 @@ export default {
   margin: 0 auto !important;
 }
 
-@media only screen and (max-width: 600px) {
-     .form {
-         width: 100% !important;
-     }
- }
-
- @media only screen and (max-width: 1024px) {
-     .form {
-         width: 80% !important;
-     }
- }
-
 .formulate-input .formulate-input-element {
   max-width: none !important;
 }
