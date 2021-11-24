@@ -32,7 +32,7 @@
         right
         shadow
       >
-        <Cart :key="addOne"></Cart>
+        <BaseCart :key="addOne"></BaseCart>
       <router-link
               exact
               :to="{ name: 'Checkout' }"
@@ -45,12 +45,12 @@
 </template>
 <script>
 // @ is an alias to /src
-import Cart from "@/components/Cart.vue";
+import BaseCart from "@/components/BaseCart.vue";
 
 export default {
   name: "Book",
   components: {
-    Cart,
+    BaseCart,
   },
   data() {
     return {
@@ -103,6 +103,5 @@ export default {
 <style scoped>
 .book {
   height: fit-content;
-  /* background: salmon; */
 }
 </style>

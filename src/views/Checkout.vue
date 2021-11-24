@@ -2,7 +2,7 @@
   <div class="p-lg-5 checkout form">
     <h1 class="display-3 mb-5">My Cart</h1>
     <div class="checkout-cart" v-if="retrieveCart">
-      <Cart></Cart>
+      <BaseCart></BaseCart>
     <div v-if="!!retrieveCheckoutInfo">
       <StripeCheckout
         ref="checkoutRef"
@@ -26,11 +26,11 @@
 
 <script>
 import { StripeCheckout } from "@vue-stripe/vue-stripe";
-import Cart from "../components/Cart.vue";
+import BaseCart from "../components/BaseCart.vue";
 export default {
   components: {
     StripeCheckout,
-    Cart,
+    BaseCart,
   },
   created() {
     this.getCart();
