@@ -17,6 +17,7 @@
       Checkout!
     </b-button>
      </div>
+     <b-spinner v-if="isLoading" variant="info" type="grow" label="Spinning"></b-spinner>
     <div v-if="!retrieveCart">
       <h3 class="m-3">Add Items to your Cart!</h3>
       <b-button variant="info" @click="goToHome">Go to Books</b-button>
@@ -35,6 +36,11 @@ export default {
   created() {
     this.getCart();
     this.retrieveCart;
+  },
+  data() {
+    return {
+      isLoading: false
+    }
   },
   computed: {
     getPublishableKey() {
@@ -62,8 +68,10 @@ export default {
     },
     async submit() {
       // You will be redirected to Stripe's secure checkout page
+      this.isLoading = true;
       await this.getCheckoutInfo();
       await this.$refs.checkoutRef.redirectToCheckout();
+      this.isLoading = false;
     },
     goToHome() {
       this.$router.push({ name: "Home" });

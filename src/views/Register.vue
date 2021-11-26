@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1 class="m-4">Register</h1>
+    <h1 class="m-5 display-3">Register</h1>
     <div class="form">
       <FormulateForm name="register" @submit="register" v-model="formValues">
         <FormulateInput

@@ -65,9 +65,9 @@
                 icon="cart"
                 class="h5 mx-3 cart"
               ></b-icon-cart>
-              <span class="cart-items-count">
-                {{ cartItemsCount }}
-              </span>
+              <span class="cart-items-count text-center">{{
+                cartItemsCount
+              }}</span>
             </router-link>
           </b-nav-item>
           <b-nav-item v-if="!isLoggedIn">
@@ -130,14 +130,12 @@ export default {
       this.isHovered = hovered;
     },
     async logOut() {
-      await this.$store.dispatch("logOut", {
-        refreshToken: sessionStorage.getItem("refreshToken"),
-      });
-      if (!(this.$router.currentRoute.name === "Home")) {
-        this.$router.replace({
-          name: "Home",
+        await this.$store.dispatch("logOut", {
+          refreshToken: sessionStorage.getItem("refreshToken"),
         });
-      }
+        this.$router.replace({
+          name: "Login",
+        });
     },
   },
 };

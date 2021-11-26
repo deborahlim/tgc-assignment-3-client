@@ -27,7 +27,7 @@
       </div>
 
       <div class="books mt-5 p-sm-2 p-lg-5">
-        <h2 class="display-4">Our Books</h2>
+        <h2 class="display-4 font-weight-bold">Our Books</h2>
         <div>
           <b-form-input
             v-model="title"

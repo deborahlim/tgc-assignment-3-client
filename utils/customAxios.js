@@ -2,7 +2,7 @@ const axios = require("axios");
 
 const axiosInstance = axios.create({
   baseURL:
-    "https://3000-violet-mite-o5697y0d.ws-us17.gitpod.io/",
+    "https://tgc-dl-the-book-corner.herokuapp.com/",
 });
 
 module.exports = axiosInstance;

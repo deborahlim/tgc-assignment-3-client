@@ -1,14 +1,16 @@
 <template>
   <div class="pt-sm-2 pt-md-5">
     <b-card
-    style="cursor: pointer;"
+      style="cursor: pointer"
       v-for="item in displayCart"
       v-bind:key="item.id"
       no-body
       class="overflow-hidden text-wrap cart-item"
+      :class="{ overlay : isActive}"
     >
+      <b-spinner v-if="isLoading" style="position: absolute; left:50%; top:50%" variant="light" type="grow" label="Spinning"></b-spinner>
       <p class="pt-2 lead font-weight-bold">{{ item.books.title }}</p>
-      <b-row no-gutters style="height:100%">
+      <b-row no-gutters style="height: 100%">
         <b-col md="6" class="d-flex align-items-center justify-content-center">
           <b-card-img
             :src="item.books.imageUrl"
@@ -78,6 +80,12 @@ export default {
     this.getCart();
   },
   components: { BIconTrash },
+  data() {
+    return {
+      isLoading: false,
+      isActive: false,
+    };
+  },
   computed: {
     getQuantity() {
       return this.chosenQty;
@@ -95,15 +103,23 @@ export default {
       await this.$store.dispatch("showCart");
     },
     async removeFromCart(book_id) {
+      this.isLoading = true;
+      this.isActive = true;
       await this.$store.dispatch("deleteFromCart", { book_id: book_id });
       await this.$store.dispatch("showCart");
+      this.isLoading = false;
+      this.isActive = false;
     },
     async updateQuantity(data) {
+      this.isLoading = true;
+      this.isActive = true;
       console.log(data);
       await this.$store.dispatch("updateQty", {
         book_id: data.bookId,
         new_quantity: data.quantity,
       });
+      this.isLoading = false;
+      this.isActive = false;
       this.getCart();
     },
   },
@@ -126,5 +142,9 @@ export default {
 .formulate-input .formulate-input-element {
   display: inline-block;
   max-width: 100px !important;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1 class="display-5 m-3">Orders</h1>
+    <h1 class="display-3 m-5">Orders</h1>
+    <b-button class="mb-5" variant="info" @click="this.loadOrders">Refresh</b-button>
     <b-tabs>
       <div class="order-card" v-if="!!getOrders">
         <b-tab

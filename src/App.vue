@@ -34,6 +34,11 @@ computed: {
   color: #2c3e50;
 }
 
+.form {
+  width: 50% !important;
+  margin: 0 auto !important;
+}
+
 @media only screen and (max-width: 600px) {
       #app {
         padding: 10px
