@@ -14,7 +14,7 @@
 
       <b-img height="300px" alt="image" :src="photoURL"> </b-img>
       <b-card-text>
-        <p class="lead mt-3">${{ cost }}</p>
+        <p class="lead mt-3">${{ cost.toFixed(2) }}</p>
       </b-card-text>
       <template #footer>
         <small v-for="author in authors" v-bind:key="author.id" class="fw-bold"
