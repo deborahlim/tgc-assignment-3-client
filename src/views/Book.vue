@@ -7,7 +7,7 @@
       <b-img :src="selectedBook.imageUrl" fluid alt="Responsive image"></b-img>
       </b-col>
       <b-col md="6" class="mt-4">
-      <p> <span class="font-weight-bold">Price: </span> ${{ selectedBook.cost }}</p>
+      <p> <span class="font-weight-bold">Price: </span> ${{ (selectedBook.cost).toFixed(2) }}</p>
       <p> <span class="font-weight-bold">Description: </span> {{ selectedBook.description }}</p>
       <p> <span class="font-weight-bold">Format: </span>{{ selectedBook.formats.name }}</p>
       <p> <span class="font-weight-bold">Publisher: </span>{{ selectedBook.publishers.name }}</p>

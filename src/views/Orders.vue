@@ -54,7 +54,7 @@
               <p>Address: {{ order.shippingAddress }}</p>
               <p>Cost: {{ formatCost(order.shippingCost) }}</p>
             </div>
-            <p class="lead font-weight-bold">Total Amount: S${{ order.amountTotal }}</p>
+            <p class="lead font-weight-bold">Total Amount: S${{ formatCost(order.amountTotal) }}</p>
           </b-card>
         </b-tab>
       </div>
