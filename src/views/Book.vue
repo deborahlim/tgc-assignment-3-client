@@ -12,7 +12,7 @@
       <p> <span class="font-weight-bold">Format: </span>{{ selectedBook.formats.name }}</p>
       <p> <span class="font-weight-bold">Publisher: </span>{{ selectedBook.publishers.name }}</p>
       <p> <span class="font-weight-bold">Genre: </span>{{ selectedBook.genres.name }}</p>
-      <p v-for="tag in selectedBook.tags" v-bind:key="tag.id"> <span class="font-weight-bold">Tag(s): </span> <b-badge variant="primary">{{ tag.name }}</b-badge></p>
+      <p> <span class="font-weight-bold">Tag(s): </span> <b-badge  v-for="tag in selectedBook.tags" v-bind:key="tag.id" variant="primary" class="mr-2">{{ tag.name }}</b-badge></p>
       <p v-for="author in selectedBook.authors" v-bind:key="author.id">
        <span class="font-weight-bold"> Author(s):</span>  {{ author.name }} 
       </p>
