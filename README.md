@@ -21,14 +21,14 @@
     - San Serif font are chosen are they enhance readability and look clean
     - This is important as the information stands out more to the user
     - Turquoise nav bar and buttons is a bright colour that represents wisdom and knowledge
-    - This is in line with the purpose of the store with is to sell books
+    - This is in line with the purpose of the store which is to sell books
 
 
 ## C) Use Cases / Feature List
 |Use Case                         |Objective (from user’s POV)                                                         |Steps                                                                                                                                                                                                                                      |
 |---------------------------------------|------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |Register                         |To create an account                                                                |1. Click register button<br>2. Fill up form <br>3. Click submit button                                                                                                                                         |
-|Login                            |To log into account                                                                 |1. Click log in on top right hand corner<br>2. Fill up username and password <br>>3. Submit form                                                                                                                |
+|Login                            |To log into account                                                                 |1. Click log in on top right hand corner<br>2. Fill up username and password <br>3. Submit form                                                                                                                |
 |View / Search Books              |To find a specific book                                                             |1. Type in a title into the text input                                                                                                                                                                                                     |
 |Add book to cart                 |Earmark books for potential  purchase                                               |1. Click on a specific book at the home page<br>2. Click add to cart                                                                                                                                                         |
 |Remove book from cart            |Discard book as a potential purchase                                                |1. Click on trash icon in an item in the cart                                                                                                                                                                                              |
@@ -60,8 +60,8 @@
     - Bootstrap Vue Icons (https://bootstrap-vue.org/docs/icons)
 Resources:
     - Carousel Images   
-        - https://www.nytimes.com/2020/12/02/books/times-critics-top-books-of-2020.html
-        - https://www.nytimes.com/2019/09/26/books/new-october-books.html
-        - https://www.facebook.com/humansofnewyork/
+        * https://www.nytimes.com/2020/12/02/books/times-critics-top-books-of-2020.html
+        * https://www.nytimes.com/2019/09/26/books/new-october-books.html
+        * https://www.facebook.com/humansofnewyork/
 
 
