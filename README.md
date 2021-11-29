@@ -2,8 +2,12 @@
 
 
 ## A) Summary
-- Create a frontend web application using Vue.js which allows customers to view available books for sale and purchase them
-- Deployed URL: https://relaxed-hoover-d0cdd0.netlify.app/
+- The goal of this project is to create an online e-commerce shop which sells books
+- This is the frontend site (shopping cart) which was built using Vue.js
+- It allows customers to view available books for sale and purchase them online using Stripe
+- Target Audience: Anyone who is interested in buying books for themselves, family, or friends.
+- Deployed URL (Customer Site): https://relaxed-hoover-d0cdd0.netlify.app/
+- Github link to the employee / owner site of The Book Corner: https://tgc-dl-the-book-corner.herokuapp.com/
 
 
 ## B) UI /UX
@@ -48,21 +52,19 @@
 |6.         |Test that a customer can cancel their checkout                               |1. At the stripe checkout page, click on the back button<br>2. Click go to orders                                                                                                                                                                 |1. Customer is directed back the store page that says the order was cancelled<br>2. Go to the cancelled tab, the cancelled order will be shown.                                                                                                                          |
 |7.         |Test that a customer can view their orders                                   |1. Go to the orders tab                                                                                                                                                                                                                                         |1. If the order has shipped, the order will be in the shipped tab<br>2. If the order has been completed, the order will be in the completed tab                                                                                                                          |
 
+E) Technologies Used 
+- Vue 2 (https://vuejs.org/v2/guide/)
+- Vue Router (https://router.vuejs.org/)
+- VueX (https://vuex.vuejs.org/)
+- Vue Formulate (https://vueformulate.com/)
+- Bootstrap 4 (https://getbootstrap.com/docs/4.6/getting-started/introduction/)
+- Bootstrap Vue (https://bootstrap-vue.org/)
+- Vue Stripe (https://vuestripe.com/)
+- Bootstrap Vue Icons (https://bootstrap-vue.org/docs/icons)
+- Axios (https://github.com/axios/axios)
 
-## E) Technologies Used
-    - Vue 2 (https://vuejs.org/v2/guide/)
-    - Vue Router (https://router.vuejs.org/)
-    - VueX (https://vuex.vuejs.org/)
-    - Vue Formulate (https://vueformulate.com/)
-    - Bootstrap 4 (https://getbootstrap.com/docs/4.6/getting-started/introduction/)
-    - Bootstrap Vue (https://bootstrap-vue.org/)
-    - Vue Stripe (https://vuestripe.com/)
-    - Bootstrap Vue Icons (https://bootstrap-vue.org/docs/icons)
-
-## F) Resources:
-    - Carousel Images
-        - https://www.nytimes.com/2020/12/02/books/times-critics-top-books-of-2020.html
-        - https://www.nytimes.com/2019/09/26/books/new-october-books.html
-        - https://www.facebook.com/humansofnewyork/
-
-
+ F) Resources
+- Carousel Images
+    - https://www.nytimes.com/2020/12/02/books/times-critics-top-books-of-2020.html
+    - https://www.nytimes.com/2019/09/26/books/new-october-books.html
+    - https://www.facebook.com/humansofnewyork/
