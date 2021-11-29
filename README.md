@@ -7,7 +7,7 @@
 - It allows customers to view available books for sale and purchase them online using Stripe
 - Target Audience: Anyone who is interested in buying books for themselves, family, or friends.
 - Deployed URL (Customer Site): https://relaxed-hoover-d0cdd0.netlify.app/
-- Github link to the employee / owner site of The Book Corner: https://tgc-dl-the-book-corner.herokuapp.com/
+- Github link to the employee / owner site of The Book Corner: https://github.com/deborahlim/tgc-assignment-3
 
 
 ## B) UI /UX
