@@ -58,10 +58,11 @@
     - Bootstrap Vue (https://bootstrap-vue.org/)
     - Vue Stripe (https://vuestripe.com/)
     - Bootstrap Vue Icons (https://bootstrap-vue.org/docs/icons)
-Resources:
-    - Carousel Images   
-        * https://www.nytimes.com/2020/12/02/books/times-critics-top-books-of-2020.html
-        * https://www.nytimes.com/2019/09/26/books/new-october-books.html
-        * https://www.facebook.com/humansofnewyork/
+
+## F) Resources:
+    - Carousel Images
+        - https://www.nytimes.com/2020/12/02/books/times-critics-top-books-of-2020.html
+        - https://www.nytimes.com/2019/09/26/books/new-october-books.html
+        - https://www.facebook.com/humansofnewyork/
 
 
